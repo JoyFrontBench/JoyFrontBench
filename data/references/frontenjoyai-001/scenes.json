@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "protocol": "frozen-visual",
+  "question_id": "frontenjoyai-001",
+  "task_ids": [
+    "5"
+  ],
+  "capture": {
+    "browser": "Google Chrome",
+    "locale": "zh-CN",
+    "timezone": "UTC"
+  },
+  "evidence_scope": "criterion_ids identify relevant comparison views, not proof that a criterion passes. PNGs are unretouched browser captures. Finite samples cannot prove unseen states, source facts or continuous behavior. Keep the original rubric; use needs_review if missing evidence determines the GSB decision.",
+  "comparison_limits": [],
+  "scenes": [
+    {
+      "id": "curve-editor",
+      "title": "Curve editor with synthetic daily traffic",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Upload synthetic CSV: channel_id=visual-demo, strategy_id=baseline, dt=2026-01-01; 144 ten-minute bins for each of new and returning user_layer; count=round(100+60*sin(index/144*2*pi)+(30 for returning, otherwise 0))."
+      ],
+      "frames": [
+        {
+          "path": "images/curve-editor-01.png",
+          "elapsed_ms": 4042
+        }
+      ],
+      "criterion_ids": [
+        "5.1"
+      ]
+    }
+  ]
+}

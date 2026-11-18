@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "protocol": "frozen-visual",
+  "question_id": "frontenjoyai-010",
+  "task_ids": [
+    "3"
+  ],
+  "capture": {
+    "browser": "Google Chrome",
+    "locale": "zh-CN",
+    "timezone": "UTC"
+  },
+  "evidence_scope": "criterion_ids identify relevant comparison views, not proof that a criterion passes. PNGs are unretouched browser captures. Finite samples cannot prove unseen states, source facts or continuous behavior. Keep the original rubric; use needs_review if missing evidence determines the GSB decision.",
+  "comparison_limits": [
+    {
+      "criterion_ids": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "not_established": "Particle states and transitions are stochastic finite samples, not pixel-deterministic or frame-rate measurements."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "initial",
+      "title": "Initial rendered view",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /."
+      ],
+      "frames": [
+        {
+          "path": "images/initial-01.png",
+          "elapsed_ms": 2406
+        }
+      ],
+      "criterion_ids": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ]
+    },
+    {
+      "id": "halvorsen-attractor",
+      "title": "Particle sculpture — Halvorsen Attractor",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Switch particle sculpture to Halvorsen Attractor and observe the transition and settled visual hierarchy."
+      ],
+      "frames": [
+        {
+          "path": "images/halvorsen-attractor-04.png",
+          "elapsed_ms": 14760
+        }
+      ],
+      "criterion_ids": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ]
+    },
+    {
+      "id": "dual-helix",
+      "title": "Particle sculpture — Dual Helix",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Switch particle sculpture to Halvorsen Attractor and observe the transition and settled visual hierarchy.",
+        "Switch particle sculpture to Dual Helix and observe the transition and settled visual hierarchy."
+      ],
+      "frames": [
+        {
+          "path": "images/dual-helix-01.png",
+          "elapsed_ms": 16505
+        },
+        {
+          "path": "images/dual-helix-04.png",
+          "elapsed_ms": 23025
+        }
+      ],
+      "criterion_ids": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ]
+    },
+    {
+      "id": "de-jong-attractor",
+      "title": "Particle sculpture — De Jong Attractor",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Switch particle sculpture to Halvorsen Attractor and observe the transition and settled visual hierarchy.",
+        "Switch particle sculpture to Dual Helix and observe the transition and settled visual hierarchy.",
+        "Switch particle sculpture to De Jong Attractor and observe the transition and settled visual hierarchy."
+      ],
+      "frames": [
+        {
+          "path": "images/de-jong-attractor-04.png",
+          "elapsed_ms": 30774
+        }
+      ],
+      "criterion_ids": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ]
+    }
+  ]
+}

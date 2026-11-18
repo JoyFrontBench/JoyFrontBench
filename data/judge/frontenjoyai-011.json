@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-011",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pairwise_gsb",
+      "task": "深色星空场景。整体画面需要具备电影感，可加入适度的辉光和胶片颗粒效果，但辉光不能过强，必须保证节点之间的连接线依然清晰可见",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "3D 主体、背景、色彩主题和玻璃拟态界面的风格统一"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "辉光不过曝，节点和连接线始终清晰可辨"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "画面整体为电影感"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "深色星空、科技线框、局部能量波纹、适度辉光和胶片颗粒等效果符合题目描述"
+        }
+      ]
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "点击形态切换按钮观察切换流畅度",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "球体与星形之间能够平滑形变"
+        }
+      ]
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "通过形态切换，观察球体和星形的形态",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "球体由清晰可见的节点和连接线组成"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "星形具有明确的尖刺结构；"
+        }
+      ]
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "鼠标拖拽主体",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "支持鼠标拖拽旋转球体"
+        }
+      ]
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pointwise",
+      "task": "观察主页操作栏是否有切换形态和切换颜色主题的组件",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "存在形态切换开关、颜色主题切换组件"
+        }
+      ]
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pointwise",
+      "task": "点击主体，观察波纹",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "点击节点后波纹能够从点击位置向外顺畅扩散，且波纹必须准确从被点击节点产生"
+        }
+      ]
+    },
+    {
+      "task_id": "7",
+      "judge_mode": "pointwise",
+      "task": "点击切换形态",
+      "criteria": [
+        {
+          "criterion_id": "7.1",
+          "text": "可以完成球体与星形切换"
+        }
+      ]
+    },
+    {
+      "task_id": "8",
+      "judge_mode": "pointwise",
+      "task": "点击切换形态",
+      "criteria": [
+        {
+          "criterion_id": "8.1",
+          "text": "可以完成颜色主题切换"
+        }
+      ]
+    }
+  ]
+}

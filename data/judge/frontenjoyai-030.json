@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-030",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pairwise_gsb",
+      "task": "卷宗审阅视觉、证据关系动效与移动工作流——桌面应以克制动态解释文本、时间线、引用和矛盾之间的关系。",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "首屏直接是四区工作台，正文具有纸张阅读层级"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "选区确认、标注落位、时间线变化、引用链、矛盾聚焦和来源回跳至少四类短反馈与结构化数据一致"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "动效不持续干扰阅读，虚构/非法律声明和本地草稿边界清楚"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "360px 无遮挡，reduced-motion 下用静态连接线和焦点描边保留关系。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：清空存储，桌面与 360px 加载卷宗。",
+          "**验证点 1、2（审阅与关系）**：选中文本、保存标注、移动事件、聚焦矛盾并点击引用 → 断言高亮、连接线、时间线和正文焦点按同一数据变化。",
+          "**验证点 3（克制性）**：停留阅读正文并导出 → 断言没有持续漂浮/闪烁，且用途声明清楚。",
+          "**验证点 4（移动端）**：在 360px 和 reduced-motion 下完成标注到摘要回跳 → 断言状态保留、关系可辨且按钮不被遮挡。"
+        ]
+      }
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "精确文本选择与原子标注——选择必须对应单一 paragraph 的合法 offset，结构字段完整，重复/重叠/跨段错误可解释恢复。",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "seed 至少有 4 人、6 文档、36 spans、14 events，正文/paragraph id 稳定"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "只接受单段 1 至 500 字符且 offset 与原文一致"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "跨段、空白、越界、完全重复或自定义区间重叠被拒绝"
+        },
+        {
+          "criterion_id": "2.4",
+          "text": "保存原子创建 Annotation+Span，字段/sequence/id 正确，无 dangerouslySetInnerHTML。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**验证点 1、2（合法标注）**：拖选实际正文，填写人物、时间、地点、类型、可信度并保存 → 断言高亮与原文字符精确。",
+          "**验证点 3（错误）**：尝试跨段、空白、重复和部分重叠 → 断言无半成品且提示可修改选择。",
+          "**验证点 4（源码/DOM）**：检查 reducer 与渲染 → 断言 Annotation/Span 同步创建，文本由 React 节点切分。"
+        ]
+      }
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "时间线、筛选与双向 CitationLink——片段可生成新事件或链接已有事件，重复受控，event/摘要均能回跳精确来源。",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "时间线按 start/end/id 稳定排序并支持四类联合筛选"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "span 只生成一次 annotation-origin event，结构字段继承正确"
+        },
+        {
+          "criterion_id": "3.3",
+          "text": "链接已有 event 不覆盖其时间/地点/人物，同 span 同 event 不重复"
+        },
+        {
+          "criterion_id": "3.4",
+          "text": "event、片段和摘要支持 event→citation→document/span 及反向高亮。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**验证点 1（排序筛选）**：组合人物、类型、可信度和状态 → 断言结果交集且顺序稳定。",
+          "**验证点 2、3（新增/链接）**：同一 span 新建 event、再次添加、再链接另一个 event → 断言生成一次、同 event 去重、跨 event 可引用。",
+          "**验证点 4（回跳）**：从时间线/摘要点击引用，再从片段查看关联 event → 断言精确文档和高亮状态。"
+        ]
+      }
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "结构化矛盾检测与稳定重派生——同人、半开时间重叠、规范化异地和双侧引用必须同时满足，claim id/状态在引用变化后保持一致。",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "`[start,end)` 严格重叠，端点相接不冲突"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "地点 trim/空白/标点/alias 规范化，不能用正文包含"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "同 person、不同 canonical location、两侧 citation 才生成稳定 claim"
+        },
+        {
+          "criterion_id": "4.4",
+          "text": "timeline 变化后相同签名保留人工状态，签名变化生成新 suggested。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**验证点 1、2、3（检测矩阵）**：构造同人异地重叠、端点相接、同地别名、不同人物和无引用事件 → 断言仅第一类生成 claim。",
+          "**验证点 4（重派生）**：确认 claim 后添加无关引用，再修改其事件签名 → 断言前者保留状态，后者成为新 suggested。"
+        ]
+      }
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pointwise",
+      "task": "Confirm、Reject、Merge 与级联删除——人工处置必须有理由和兼容性校验，删除用户标注同步清理事件/引用/矛盾/摘要但保留 seed 数据。",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "confirm/reject 非空理由并进入历史"
+        },
+        {
+          "criterion_id": "5.2",
+          "text": "merge 仅兼容 claim，source 标 merged/mergedInto，target/引用不丢，摘要不重复"
+        },
+        {
+          "criterion_id": "5.3",
+          "text": "删除 annotation-origin event，其他 event 仅移除相关 citation"
+        },
+        {
+          "criterion_id": "5.4",
+          "text": "重新派生矛盾/摘要，seed span 和无关链不变。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**验证点 1、2（处置）**：空理由尝试 confirm/reject/merge，再填写理由和兼容/不兼容 target → 断言校验、状态、引用和摘要计数正确。",
+          "**验证点 3、4（删除）**：删除同时被新 event 和既有 event 引用的标注 → 断言级联范围符合定义，可 undo 恢复完整链。"
+        ]
+      }
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pointwise",
+      "task": "Undo/Redo 与纯派生摘要——事实动作保存完整 snapshot，导航不污染历史；结论、支持链和待确认问题必须从当前审阅状态推导。",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "最多 30 个历史节点，事实动作进入，筛选/导航/选中不进入"
+        },
+        {
+          "criterion_id": "6.2",
+          "text": "undo 后新动作清空 redo，引用链和矛盾状态完整恢复"
+        },
+        {
+          "criterion_id": "6.3",
+          "text": "confirmed 形成结论，rejected/merged 不重复，suggested/uncertain/低可信形成待确认"
+        },
+        {
+          "criterion_id": "6.4",
+          "text": "support chain 每个链接可回跳。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**验证点 1、2（历史）**：执行标注、链接、确认，穿插筛选和导航，再多次 undo/redo/分叉 → 断言栈和完整 state 符合规则。",
+          "**验证点 3、4（摘要）**：改变四种 claim 状态和可信度 → 断言摘要即时更新且每条结论存在可用来源链。"
+        ]
+      }
+    },
+    {
+      "task_id": "7",
+      "judge_mode": "pointwise",
+      "task": "持久化、reload 与坏值恢复——present 与必要 UI 状态跨刷新恢复，历史边界明确，悬空引用或坏 offset 不能导致白屏。",
+      "criteria": [
+        {
+          "criterion_id": "7.1",
+          "text": "version/seed/present/filters/current document/timeline view 被持久化"
+        },
+        {
+          "criterion_id": "7.2",
+          "text": "reload 恢复 present，但 past/future 按说明清空"
+        },
+        {
+          "criterion_id": "7.3",
+          "text": "schema 校验 ids、offset、时间、引用和数量"
+        },
+        {
+          "criterion_id": "7.4",
+          "text": "无效 JSON、版本、悬空引用、重复 id/坏字段回退 seed，并显示恢复/重新载入入口。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**验证点 1、2（reload）**：完成标注、筛选、文档/密度选择后刷新 → 断言 present/UI 恢复且 undo 初始禁用。",
+          "**验证点 3、4（坏值）**：写入多种损坏 state → 断言无白屏、恢复横幅可操作、seed 数据数量正确。"
+        ]
+      }
+    },
+    {
+      "task_id": "8",
+      "judge_mode": "pointwise",
+      "task": "工程分层、自动化与本地依赖——审阅逻辑、历史、持久化和摘要应独立可测，桌面/移动浏览器流程通过且无真实/远程案件服务。",
+      "criteria": [
+        {
+          "criterion_id": "8.1",
+          "text": "domain/state/hooks 与组件边界清楚"
+        },
+        {
+          "criterion_id": "8.2",
+          "text": "build、至少 16 项 Vitest、typecheck/lint 通过"
+        },
+        {
+          "criterion_id": "8.3",
+          "text": "至少 3 条 Playwright 流程在桌面和 360px 各运行"
+        },
+        {
+          "criterion_id": "8.4",
+          "text": "Playwright 固定 1.58.1，不使用 latest、真实案件、OCR/AI/远程文档/图片或 dangerouslySetInnerHTML。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**验证点 1（源码）**：检查排序、矛盾、摘要、历史和 persistence → 断言组件不复制规则。",
+          "**验证点 2、3（命令）**：运行 build、test、typecheck/lint、test:e2e → 断言全部成功并覆盖双向回跳、处置/历史、删除/reload。",
+          "**验证点 4（网络/依赖）**：检查 package 和请求 → 断言完全本地且版本固定。"
+        ]
+      }
+    }
+  ]
+}

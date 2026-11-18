@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "protocol": "frozen-visual",
+  "question_id": "frontenjoyai-015",
+  "task_ids": [
+    "8"
+  ],
+  "capture": {
+    "browser": "Google Chrome",
+    "locale": "zh-CN",
+    "timezone": "UTC"
+  },
+  "evidence_scope": "criterion_ids identify relevant comparison views, not proof that a criterion passes. PNGs are unretouched browser captures. Finite samples cannot prove unseen states, source facts or continuous behavior. Keep the original rubric; use needs_review if missing evidence determines the GSB decision.",
+  "comparison_limits": [
+    {
+      "criterion_ids": [
+        "8.1"
+      ],
+      "not_established": "The captured route and skill detail show the bundled initial mastery and exam values. These images do not demonstrate earned progress or correct progression."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "specialized",
+      "title": "Skill graph, learning route and initial mastery states",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Select the elemental-specialization learning route with the initial student profile."
+      ],
+      "frames": [
+        {
+          "path": "images/specialized-01.png",
+          "elapsed_ms": 3733
+        }
+      ],
+      "criterion_ids": [
+        "8.1"
+      ]
+    },
+    {
+      "id": "skill-detail",
+      "title": "Skill details, mastery and exam presentation",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Select the elemental-specialization learning route with the initial student profile.",
+        "Select the final elemental skill to inspect its information panel and state indicators."
+      ],
+      "frames": [
+        {
+          "path": "images/skill-detail-01.png",
+          "elapsed_ms": 5256
+        }
+      ],
+      "criterion_ids": [
+        "8.1"
+      ]
+    }
+  ]
+}

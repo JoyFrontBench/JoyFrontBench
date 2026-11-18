@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-024",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "工程结构与 crank-slider 活塞四冲程——交付 Vite + React + TypeScript 多文件工程（核心几何/相位/气门/耦合/多缸逻辑拆到可单测 domain 模块，不用 dangerouslySetInnerHTML/字符串模板页面），曲轴旋转时活塞位置由 crank-slider 几何计算（非固定 keyframes），清晰显示四冲程 phase、crank angle、RPM、位移、压力读数，做功阶段有火花。",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "工程结构完整、scripts 含 dev/build/test/typecheck、核心逻辑可测试 import、build/test/typecheck 通过"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "活塞位移来自 crank-slider 几何、随曲轴角连续往复"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "四冲程 phase 与各读数正确"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "做功阶段有火花。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：加载页面并 Reset。",
+          "**验证点 1（活塞随角度）**：Play 或多次 Step → 断言活塞在上下止点间往复、位移随曲轴角变化。",
+          "**验证点 2（相位/读数/火花）**：推进整周 → 断言 phase 依次经过进气/压缩/做功/排气、读数同步、做功阶段出现火花。"
+        ]
+      }
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "容积-压力耦合、P-V 示功图与点火提前角——气缸容积由活塞位置几何派生（余隙 + 缸径面积 × 位移），压缩/做功压力与容积耦合，据此绘制闭合 P-V 示功图（回路面积=指示功）；改曲柄半径/连杆/余隙改变压缩比进而改变峰压与回路形状；点火提前角影响峰压出现的曲轴角位置。",
+      "instructions": "（判断依据：交互观察 + 读源码 + 测试）：1. 容积由活塞位移派生、非常量",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "压力与容积耦合、非脱钩的固定高斯"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "P-V 图形成闭合回路、面积可作指示功"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "改几何 → 压缩比与峰压变化"
+        },
+        {
+          "criterion_id": "2.4",
+          "text": "改点火提前角 → 峰压曲轴角位置移动。高频失败反例：压力固定高斯改参数不变、P-V 不闭合、无示功图、点火提前角不影响峰位。评分锚点：容积派生+压力耦合+P-V闭合+几何/点火影响峰压=1；有 P-V 但压力与几何脱钩=0.5；仅装饰性 P-θ=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：Reset，记录峰值压力/角与 P-V 回路形状。",
+          "**验证点 1（示功图闭合）**：推进一整循环 → 断言 P-V 形成闭合回路。",
+          "**验证点 2（几何改压缩比）**：增大曲柄半径或减小余隙 → 断言压缩比增大、峰压升高、回路形状变化；反向 → 峰压下降。",
+          "**验证点 3（点火提前角）**：增大/减小点火提前角 → 断言峰压曲轴角前移/后移，曲线标记同步。"
+        ]
+      }
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "气门升程曲线、配气正时与气门重叠——进/排气门为随曲轴角连续变化的升程曲线（非二元开关），正时合理，上止点附近存在进排气重叠；提供随曲轴角推进的气门升程图，剖面气门开度随升程连续变化并与升程图联动。",
+      "instructions": "（判断依据：交互观察 + 读源码 + 测试）：1. 升程连续、非开/关两态",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "进气门在进气冲程附近、排气门在排气冲程附近开启，正时合理"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "上止点附近两门同时有一定开度（overlap）"
+        },
+        {
+          "criterion_id": "3.3",
+          "text": "升程图与剖面气门联动同一曲轴角。高频失败反例：二元开关、无升程曲线、无重叠、正时与冲程不符。评分锚点：连续升程+正时合理+有重叠+联动=1；连续升程但无重叠/正时粗糙=0.5；二元开关=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：Reset，展示气门升程图。",
+          "**验证点 1（连续升程+联动）**：缓慢 Step → 断言气门开度随曲轴角连续变化、剖面气门位移与升程图一致。",
+          "**验证点 2（正时+重叠）**：断言进/排气门分别在进/排气冲程开启；推进到上止点交界 → 断言两门同时有一定开度（overlap）。"
+        ]
+      }
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "直列四缸相位与点火顺序——四个活塞由同一曲轴驱动、按 180° 相位偏移同步运动，点火顺序 1-3-4-2；提供曲轴端视图显示四曲拐角度关系，主视图与端视图一致。",
+      "instructions": "（判断依据：交互观察 + 读源码 + 测试）：1. 四缸相位按 180° 偏移、同一时刻处于不同冲程",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "点火顺序 1-3-4-2"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "曲轴端视图曲拐角度与主视图当前角、各缸相位一致"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "相位关系在 domain 可测试。高频失败反例：多缸相位相同、点火顺序错误、端视图与主视图脱节。评分锚点：180°相位+顺序正确+端视图联动=1；多缸但相位/顺序错=0.5；单缸=0。"
+        }
+      ]
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pointwise",
+      "task": "控制、确定性、稳定性与 preset 对比——Play/Pause/Step/Reset 与慢动作，Step 固定角度不依赖帧率、可确定性复现；各视图（剖面/升程图/压力/P-V/端视图）联动同一曲轴角；参数非法被 clamp/拒绝并反馈（连杆须大于曲柄半径）、无 NaN/穿帮；Reset 后全状态一致；快速 Play/Pause 不产生多个 RAF；保存 preset 并对比最大压力/行程/压缩比/峰值时刻/指示功（数据来自真实 simulation）。",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "控制齐全、Step 确定性、相同输入可复现"
+        },
+        {
+          "criterion_id": "5.2",
+          "text": "各视图联动同一曲轴角"
+        },
+        {
+          "criterion_id": "5.3",
+          "text": "非法参数被 clamp/拒绝且反馈、连杆>曲柄半径、无 NaN/穿帮"
+        },
+        {
+          "criterion_id": "5.4",
+          "text": "Reset 后曲轴/活塞/气门/曲线/多缸相位一致"
+        },
+        {
+          "criterion_id": "5.5",
+          "text": "快速 Play/Pause/Reset 不产生多 RAF"
+        },
+        {
+          "criterion_id": "5.6",
+          "text": "preset 对比来自真实数据、非写死。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：Reset。",
+          "**验证点 1（Step 确定性+联动）**：连续 Step 记录状态序列，Reset 后重复 → 断言完全一致；Step 到某角 → 断言剖面/升程图/压力或 P-V 角标记/端视图都指向同一曲轴角。",
+          "**验证点 2（clamp+RAF）**：连杆设到小于曲柄半径或输入非法值 → 断言被 clamp/拒绝并反馈、无 NaN/穿帮；快速多次 Play/Pause/Reset → 断言无动画加速（多 RAF）、控制台无报错。",
+          "**验证点 3（preset 对比）**：保存一个 preset，改参数再保存并对比 → 断言最大压力/行程/压缩比/峰值时刻/指示功对比与真实运行一致。"
+        ]
+      }
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pointwise",
+      "task": "响应式、reduced-motion、工程风格视觉与文档测试——360px 下可操作关键控制并看到剖面、气门升程、压力/示功图与状态；reduced-motion 下 Step 仍可观察完整四冲程与升程；桌面呈工程技术手册剖面风；提供覆盖核心逻辑的测试与说明齐全的 README。",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "360px 下关键控制与各视图可用、不错位"
+        },
+        {
+          "criterion_id": "6.2",
+          "text": "prefers-reduced-motion 减少连续动画但 Step 可看完整四冲程与升程"
+        },
+        {
+          "criterion_id": "6.3",
+          "text": "桌面视觉为蓝图/技术手册风、部件清晰可读"
+        },
+        {
+          "criterion_id": "6.4",
+          "text": "至少 12 个 Vitest + 2 个 Playwright 覆盖 crank-slider、容积-压力耦合、示功图闭合、气门升程与重叠、四缸相位与点火顺序、点火提前角峰位、step 确定性、clamp、RAF 等"
+        },
+        {
+          "criterion_id": "6.5",
+          "text": "README 说明运行/构建/测试/模块/数据模型/机械与热力学近似/reset/seed/已知限制。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：viewport 设为 360px 宽。",
+          "**验证点 1（移动+降级）**：断言可调 RPM/几何/点火提前角、可 Step，剖面/气门升程/压力或示功图/状态可见；启用 prefers-reduced-motion → 断言连续动画减少但 Step 仍可推进观察完整四冲程与升程。",
+          "**静态验证**：运行 test/lint/typecheck；读 README 与测试核对覆盖与近似模型描述。"
+        ]
+      }
+    }
+  ]
+}

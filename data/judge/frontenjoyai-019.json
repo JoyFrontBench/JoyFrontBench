@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-019",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "3D 工作台结构与可测试核心——交付 Vite + React + TypeScript + Three.js 多文件工程，页面是可交互 3D 晶格工作台（真实 WebGL 场景、控制面板、图例、选择信息、能垒面板），并把晶格生成、邻接、切片过滤、路径校验、能垒派生等核心逻辑与 render 组件分离、可单测。",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "工程含 package.json、index.html、src/main.tsx、src/App.tsx、README.md，scripts 含 dev/build/test/lint 或 typecheck"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "存在真实非空 Three.js 场景而非静态插图或纯球体堆叠"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "核心逻辑在 domain/data 纯函数中、可被测试 import"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "不使用 dangerouslySetInnerHTML、不写字符串模板页面"
+        },
+        {
+          "criterion_id": "1.5",
+          "text": "build/test/typecheck 通过。"
+        }
+      ]
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "晶格场景、视角控制与图例——渲染至少 80 个原子位点、3 类元素、按元素区分颜色/大小，掺杂与空位有独立标记；支持 orbit/pan/zoom 与一键重置视角；提供清晰图例，可显示/隐藏晶胞边界、键、空位、掺杂、路径。",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "≥80 位点、3 类元素、颜色/大小区分且有图例"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "掺杂与空位有独立视觉标记"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "orbit/pan/zoom 与重置视角可用"
+        },
+        {
+          "criterion_id": "2.4",
+          "text": "各图层可独立显示/隐藏。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：加载页面，确认 3D 场景与控制面板可见。",
+          "**验证点 1（视角控制）**：拖动旋转、滚轮缩放、平移 → 断言视角随之变化；点击重置视角 → 断言回到初始视角。",
+          "**验证点 2（图例区分）**：查看图例 → 断言 3 类元素 + 掺杂 + 空位有可区分的颜色/标记。",
+          "**验证点 3（图层开关）**：依次关闭键/空位/掺杂/路径 → 断言对应元素在场景中隐藏，再开启恢复。"
+        ]
+      }
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "真实切片裁剪——切片模式用裁剪（clipping planes 或等价）真正把晶胞盒与键剖开成横截面，切面可沿 X/Y/Z 拖动；切片是纯视图操作，不改变底层晶格数据（退出后结构完好）。",
+      "instructions": "（判断依据：交互观察 + 读源码 + 测试）：1. 切片时晶胞盒/键被平面切开（截面），而非仅隐藏一部分原子",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "切面可沿选定轴拖动移动"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "切片不改底层数据（filterSlice/裁剪为视图层，退出切片结构完好，有测试佐证）。高频失败反例：切片只是 `filter` 隐藏原子、键不被切、切片改写了 sites 数组。评分锚点：真实裁剪剖面 + 可拖动 + 不改数据=1；有切片但只隐藏原子/键不切=0.5；切片改数据或无切片=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：进入切片模式，选 X 轴。",
+          "**验证点 1（裁剪剖面）**：观察场景 → 断言晶胞盒与键在切面处被切开呈横截面，而非整块隐藏。",
+          "**验证点 2（拖动切面）**：拖动切片位置控件 → 断言剖面沿 X 轴连续移动，露出不同层。",
+          "**验证点 3（不改数据）**：切回完整视图 → 断言晶格结构完整无缺失（切片未破坏数据）。"
+        ]
+      }
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "精确 3D 拾取与局部环境可视化——点击用 raycast 选中光标下最前面的原子（正确处理遮挡），显示元素/坐标/邻居/局部环境/是否在迁移路径上，并在 3D 中高亮其邻接键与配位多面体。",
+      "instructions": "（判断依据：交互观察 + 测试）：1. 点击选中的是光标下最前原子，非被遮挡原子",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "选择信息面板字段正确（元素、坐标、邻居、是否参与路径）"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "3D 中高亮该原子的邻接键与配位多面体"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "邻居计算正确。高频失败反例：命中被遮挡原子、只弹信息不在 3D 高亮、无配位多面体。评分锚点：最前拾取 + 信息正确 + 3D 高亮邻接/多面体=1；拾取或信息对但无 3D 高亮=0.5；拾取错误=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：完整视图，找到前后重叠的两个原子。",
+          "**验证点 1（最前拾取）**：点击重叠处 → 断言选中的是前面的原子，不是被遮挡的。",
+          "**验证点 2（信息正确）**：断言选择面板显示该原子元素、坐标、邻居列表、是否在路径上。",
+          "**验证点 3（3D 高亮）**：断言场景中高亮该原子的邻接键与配位多面体。"
+        ]
+      }
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pointwise",
+      "task": "交互式迁移路径构建与相邻性校验——除内置路径外，用户可在 3D 中依次点击位点构建自定义迁移路径；只允许相邻位点（或经空位）连接，非法跳跃被拒并反馈；构建过程实时连线。",
+      "instructions": "（判断依据：交互观察 + 测试）：1. 可依次点击位点构建路径并实时连线",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "相邻/经空位的连接被接受"
+        },
+        {
+          "criterion_id": "5.2",
+          "text": "非相邻的非法跳跃被拒绝并有反馈"
+        },
+        {
+          "criterion_id": "5.3",
+          "text": "校验逻辑在可测试纯函数中。高频失败反例：任意两点直连、无相邻性校验、无反馈。评分锚点：可构建 + 校验相邻 + 拒非法有反馈=1；可构建但不校验相邻=0.5；无自定义路径构建=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：进入路径构建模式。",
+          "**验证点 1（合法连接）**：依次点击相邻位点 → 断言路径实时连线延长。",
+          "**验证点 2（非法拒绝）**：点击一个与当前末端不相邻的远处位点 → 断言该跳跃被拒绝、给出反馈、路径不连过去。",
+          "**验证点 3（能垒随构建更新）**：完成一条自定义路径 → 断言能垒曲线随之生成。"
+        ]
+      }
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pointwise",
+      "task": "能垒由局部环境确定性派生并与 3D 联动——每条路径（含自定义）的能垒 profile 由沿途位点本地环境（到最近空位/掺杂距离、配位数等）确定性派生，切换配置/路径随之变化、同 seed 可复现；能垒曲线与 3D 路径节点双向 hover 联动；可比较两条路径瓶颈/平均能垒（叠加曲线 + 3D 双路径高亮）。",
+      "instructions": "（判断依据：交互观察 + 读源码 + 测试）：1. 能垒非硬编码常量数组，由 domain 函数从位点环境派生",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "切换配置或改变路径后能垒 profile 变化"
+        },
+        {
+          "criterion_id": "6.2",
+          "text": "同 seed 同路径复现相同 profile"
+        },
+        {
+          "criterion_id": "6.3",
+          "text": "hover 曲线某步高亮对应 3D 节点、反之亦然"
+        },
+        {
+          "criterion_id": "6.4",
+          "text": "两路径瓶颈/平均能垒可叠加对比。高频失败反例：能垒写死、切配置不变、曲线与 3D 不联动。评分锚点：派生+随配置变+可复现+双向联动+对比=1；派生但不联动或不随配置变=0.5；硬编码能垒=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：选中内置路径 A，记录其能垒曲线。",
+          "**验证点 1（随配置变化）**：切换掺杂配置（Cl-rich ↔ Br-doped）→ 断言路径能垒 profile 发生变化。",
+          "**验证点 2（双向联动）**：hover 能垒曲线第 3 步 → 断言 3D 中第 3 个路径节点高亮；在 3D 中 hover 该节点 → 断言曲线对应点高亮。",
+          "**验证点 3（路径对比）**：选择比较 A/B 两路径 → 断言叠加曲线与瓶颈/平均能垒对比，3D 中两路径都高亮。"
+        ]
+      }
+    },
+    {
+      "task_id": "7",
+      "judge_mode": "pointwise",
+      "task": "迁移动画与 WebGL 生命周期——播放离子沿路径移动动画，支持 pause/resume/reset；快速切换配置、切片、路径或卸载组件时不产生 orphan Three.js object、console warning 或未清理 RAF，geometry/material/texture 正确 dispose。",
+      "criteria": [
+        {
+          "criterion_id": "7.1",
+          "text": "动画可播放/暂停/继续/重置且进度正确"
+        },
+        {
+          "criterion_id": "7.2",
+          "text": "快速切换配置/切片/路径无 console warning、无卡顿累积（多 RAF）"
+        },
+        {
+          "criterion_id": "7.3",
+          "text": "组件卸载/切换时 RAF 清理、geometry/material/texture dispose（有 dispose adapter 与测试佐证）"
+        },
+        {
+          "criterion_id": "7.4",
+          "text": "无内存泄漏迹象或 orphan object。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：选一条路径开始播放动画。",
+          "**验证点 1（动画控制）**：点击 pause → 断言离子停止；resume → 断言继续；reset → 断言回到起点。",
+          "**验证点 2（切换清理）**：动画播放中快速多次切换配置/切片/路径 → 断言控制台无 warning/报错、无动画加速（RAF 叠加）现象。",
+          "**验证点 3（dispose）**：读源码/测试 → 断言存在 geometry/material/texture dispose 与 RAF 清理逻辑。"
+        ]
+      }
+    },
+    {
+      "task_id": "8",
+      "judge_mode": "pointwise",
+      "task": "配置切换 selection 失效、持久化恢复与 fallback——切换配置后当前选中的原子或路径节点若不存在应清空并提示；reload 恢复配置/view mode/切片轴与位置/路径偏好；WebGL 不可用时明确 fallback 不白屏；坏 seed/坏存储回退。",
+      "criteria": [
+        {
+          "criterion_id": "8.1",
+          "text": "切配置后失效的 selection/路径节点被清空并提示"
+        },
+        {
+          "criterion_id": "8.2",
+          "text": "reload 恢复各项偏好"
+        },
+        {
+          "criterion_id": "8.3",
+          "text": "坏 localStorage / malformed seed 回退到默认不白屏"
+        },
+        {
+          "criterion_id": "8.4",
+          "text": "WebGL 不可用显示明确 fallback。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：选中一个仅存在于 Cl-rich 的掺杂原子。",
+          "**验证点 1（selection 失效）**：切到 Br-doped → 断言该选择被清空并提示，不残留错误信息。",
+          "**验证点 2（恢复偏好）**：设定切片轴/位置与路径显示后刷新选恢复 → 断言各偏好还原。",
+          "**验证点 3（坏值/fallback）**：写入坏 localStorage 后刷新 → 断言不白屏、回退默认；模拟 WebGL 不可用 → 断言显示 fallback。"
+        ]
+      }
+    },
+    {
+      "task_id": "9",
+      "judge_mode": "pointwise",
+      "task": "响应式、reduced-motion 与 README——360px 下提供简化控制面板、不遮挡主 3D 场景，仍可拾取/切片/看能垒；reduced-motion 减少连续动画但选择/切片/联动仍可用；桌面呈现科研级深色实验室视觉；README 说明齐全。",
+      "criteria": [
+        {
+          "criterion_id": "9.1",
+          "text": "360px 下控制面板简化且不遮挡场景、核心功能可用"
+        },
+        {
+          "criterion_id": "9.2",
+          "text": "prefers-reduced-motion 减少动画但交互与联动保留"
+        },
+        {
+          "criterion_id": "9.3",
+          "text": "桌面视觉为深色实验室风、图层清晰可读"
+        },
+        {
+          "criterion_id": "9.4",
+          "text": "README 说明运行/构建/测试/模块/数据模型/Three.js 生命周期(含 clipping 与 dispose)/能垒派生/reset/seed/已知限制。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：viewport 设为 360px 宽。",
+          "**验证点 1（移动可用）**：断言控制面板简化、不遮挡 3D 场景，可拾取原子、切片与查看能垒。",
+          "**验证点 2（reduced motion）**：启用后重载 → 断言迁移动画等连续动画减少，但选择/切片/能垒联动仍可用。",
+          "**静态验证**：运行 test/lint/typecheck；读 README 核对说明与生命周期/能垒派生描述。"
+        ]
+      }
+    }
+  ]
+}

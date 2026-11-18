@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "front-generation-common"
+version = "0.1.0"
+description = "Shared generation configuration and task utilities for JoyFrontBench."
+requires-python = ">=3.12,<3.13"
+dependencies = ["python-dotenv>=1.1,<2"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

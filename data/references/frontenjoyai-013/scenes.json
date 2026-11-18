@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "protocol": "frozen-visual",
+  "question_id": "frontenjoyai-013",
+  "task_ids": [
+    "3"
+  ],
+  "capture": {
+    "browser": "Google Chrome",
+    "locale": "zh-CN",
+    "timezone": "UTC"
+  },
+  "evidence_scope": "criterion_ids identify relevant comparison views, not proof that a criterion passes. PNGs are unretouched browser captures. Finite samples cannot prove unseen states, source facts or continuous behavior. Keep the original rubric; use needs_review if missing evidence determines the GSB decision.",
+  "comparison_limits": [
+    {
+      "criterion_ids": [
+        "3.1"
+      ],
+      "not_established": "The initial, rotated and later running images show apparent depth and material layering, not the underlying structural implementation or continuous motion. Mobile views are not part of this visual-style selection."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "initial",
+      "title": "Initial rendered view",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /."
+      ],
+      "frames": [
+        {
+          "path": "images/initial-01.png",
+          "elapsed_ms": 2411
+        }
+      ],
+      "criterion_ids": [
+        "3.1"
+      ]
+    },
+    {
+      "id": "rotated",
+      "title": "Watch depth from a rotated angle",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Drag the watch horizontally and slightly downward; inspect mechanical depth from the new viewing angle while it continues running."
+      ],
+      "frames": [
+        {
+          "path": "images/rotated-01.png",
+          "elapsed_ms": 6385
+        }
+      ],
+      "criterion_ids": [
+        "3.1"
+      ]
+    },
+    {
+      "id": "continued-running",
+      "title": "Watch after continued animation",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Drag the watch horizontally and slightly downward; inspect mechanical depth from the new viewing angle while it continues running.",
+        "Leave the watch running for another 20 seconds without interaction."
+      ],
+      "frames": [
+        {
+          "path": "images/continued-running-03.png",
+          "elapsed_ms": 31252
+        }
+      ],
+      "criterion_ids": [
+        "3.1"
+      ]
+    }
+  ]
+}

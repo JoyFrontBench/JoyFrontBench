@@ -1,0 +1,5 @@
+data/references/** -text
+data/dataset.json -text
+data/tasks/*.md -text
+data/judge/*.json -text
+data/references/**/images/*.png binary linguist-generated

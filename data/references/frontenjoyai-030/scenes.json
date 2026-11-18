@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "protocol": "frozen-visual",
+  "question_id": "frontenjoyai-030",
+  "task_ids": [
+    "1"
+  ],
+  "capture": {
+    "browser": "Google Chrome",
+    "locale": "zh-CN",
+    "timezone": "UTC"
+  },
+  "evidence_scope": "criterion_ids identify relevant comparison views, not proof that a criterion passes. PNGs are unretouched browser captures. Finite samples cannot prove unseen states, source facts or continuous behavior. Keep the original rubric; use needs_review if missing evidence determines the GSB decision.",
+  "comparison_limits": [
+    {
+      "criterion_ids": [
+        "1.2"
+      ],
+      "not_established": "Selection, annotation, event insertion, citation, contradiction and source-focus states are sampled. Images cannot establish identity or consistency of the underlying structured data."
+    },
+    {
+      "criterion_ids": [
+        "1.3",
+        "1.4"
+      ],
+      "not_established": "Reading, disclaimers and the 360px reduced-motion annotation-to-summary return flow are sampled; unobserved continuous motion, complete persistence and every interactive state remain unverified."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "initial",
+      "title": "Initial rendered view",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /."
+      ],
+      "frames": [
+        {
+          "path": "images/initial-01.png",
+          "elapsed_ms": 2449
+        }
+      ],
+      "criterion_ids": [
+        "1.1",
+        "1.3"
+      ]
+    },
+    {
+      "id": "selection-feedback",
+      "title": "Selection confirmation feedback",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Dismiss the introductory notice while retaining the built-in fictional case data.",
+        "Use the first-paragraph sample selection to display selection confirmation."
+      ],
+      "frames": [
+        {
+          "path": "images/selection-feedback-03.png",
+          "elapsed_ms": 6298
+        }
+      ],
+      "criterion_ids": [
+        "1.2",
+        "1.3"
+      ]
+    },
+    {
+      "id": "annotation-feedback",
+      "title": "Annotation placement and visible feedback",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Dismiss the introductory notice while retaining the built-in fictional case data.",
+        "Use the first-paragraph sample selection to display selection confirmation.",
+        "Save the annotation using the current default form values."
+      ],
+      "frames": [
+        {
+          "path": "images/annotation-feedback-03.png",
+          "elapsed_ms": 8312
+        }
+      ],
+      "criterion_ids": [
+        "1.2",
+        "1.3"
+      ]
+    },
+    {
+      "id": "timeline-feedback",
+      "title": "New event and timeline insertion feedback",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Dismiss the introductory notice while retaining the built-in fictional case data.",
+        "Use the first-paragraph sample selection to display selection confirmation.",
+        "Save the annotation using the current default form values.",
+        "Add the saved annotation as a new timeline event and observe the insertion feedback."
+      ],
+      "frames": [
+        {
+          "path": "images/timeline-feedback-03.png",
+          "elapsed_ms": 10083
+        }
+      ],
+      "criterion_ids": [
+        "1.2",
+        "1.3"
+      ]
+    },
+    {
+      "id": "citation-feedback",
+      "title": "Citation and source-jump feedback",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Dismiss the introductory notice while retaining the built-in fictional case data.",
+        "Use the first-paragraph sample selection to display selection confirmation.",
+        "Save the annotation using the current default form values.",
+        "Add the saved annotation as a new timeline event and observe the insertion feedback.",
+        "Follow the first timeline citation to its source text."
+      ],
+      "frames": [
+        {
+          "path": "images/citation-feedback-03.png",
+          "elapsed_ms": 11876
+        }
+      ],
+      "criterion_ids": [
+        "1.2",
+        "1.3"
+      ]
+    },
+    {
+      "id": "contradiction-feedback",
+      "title": "Contradiction review and status feedback",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Dismiss the introductory notice while retaining the built-in fictional case data.",
+        "Use the first-paragraph sample selection to display selection confirmation.",
+        "Save the annotation using the current default form values.",
+        "Add the saved annotation as a new timeline event and observe the insertion feedback.",
+        "Follow the first timeline citation to its source text.",
+        "Confirm the first contradiction using its default written reason and observe its status feedback."
+      ],
+      "frames": [
+        {
+          "path": "images/contradiction-feedback-03.png",
+          "elapsed_ms": 13501
+        }
+      ],
+      "criterion_ids": [
+        "1.2",
+        "1.3"
+      ]
+    },
+    {
+      "id": "mobile-materials",
+      "title": "360px reduced-motion review — 材料",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "reduce",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Use a fresh 360px viewport with reduced-motion enabled; inspect reading and relation cues.",
+        "Dismiss the introductory notice.",
+        "Switch the mobile review section to 材料 with reduced motion still enabled."
+      ],
+      "frames": [
+        {
+          "path": "images/mobile-materials-01.png",
+          "elapsed_ms": 3017
+        }
+      ],
+      "criterion_ids": [
+        "1.2",
+        "1.3",
+        "1.4"
+      ]
+    },
+    {
+      "id": "mobile-annotation",
+      "title": "360px annotation and focused source",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "reduce",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Use a fresh 360px viewport with reduced-motion enabled; inspect reading and relation cues.",
+        "Dismiss the introductory notice.",
+        "Switch the mobile review section to 材料 with reduced motion still enabled.",
+        "Switch the mobile review section to 时间线 with reduced motion still enabled.",
+        "Switch the mobile review section to 矛盾 with reduced motion still enabled.",
+        "Switch the mobile review section to 摘要 with reduced motion still enabled.",
+        "Return to materials, select the sample first-paragraph text and save an annotation with default values; allow the source-focus scroll to settle."
+      ],
+      "frames": [
+        {
+          "path": "images/mobile-annotation-01.png",
+          "elapsed_ms": 5401
+        }
+      ],
+      "criterion_ids": [
+        "1.2",
+        "1.3",
+        "1.4"
+      ]
+    },
+    {
+      "id": "mobile-added-event",
+      "title": "360px new timeline event",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "reduce",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Use a fresh 360px viewport with reduced-motion enabled; inspect reading and relation cues.",
+        "Dismiss the introductory notice.",
+        "Switch the mobile review section to 材料 with reduced motion still enabled.",
+        "Switch the mobile review section to 时间线 with reduced motion still enabled.",
+        "Switch the mobile review section to 矛盾 with reduced motion still enabled.",
+        "Switch the mobile review section to 摘要 with reduced motion still enabled.",
+        "Return to materials, select the sample first-paragraph text and save an annotation with default values; allow the source-focus scroll to settle.",
+        "Add the annotation as an event, switch to timeline and bring the new event into view."
+      ],
+      "frames": [
+        {
+          "path": "images/mobile-added-event-01.png",
+          "elapsed_ms": 5977
+        }
+      ],
+      "criterion_ids": [
+        "1.2",
+        "1.3",
+        "1.4"
+      ]
+    },
+    {
+      "id": "mobile-populated-summary",
+      "title": "360px summary after annotation",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "reduce",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Use a fresh 360px viewport with reduced-motion enabled; inspect reading and relation cues.",
+        "Dismiss the introductory notice.",
+        "Switch the mobile review section to 材料 with reduced motion still enabled.",
+        "Switch the mobile review section to 时间线 with reduced motion still enabled.",
+        "Switch the mobile review section to 矛盾 with reduced motion still enabled.",
+        "Switch the mobile review section to 摘要 with reduced motion still enabled.",
+        "Return to materials, select the sample first-paragraph text and save an annotation with default values; allow the source-focus scroll to settle.",
+        "Add the annotation as an event, switch to timeline and bring the new event into view.",
+        "Switch to summary after annotation and event creation; inspect the draft disclaimer and return-to-source controls."
+      ],
+      "frames": [
+        {
+          "path": "images/mobile-populated-summary-01.png",
+          "elapsed_ms": 6521
+        }
+      ],
+      "criterion_ids": [
+        "1.2",
+        "1.3",
+        "1.4"
+      ]
+    },
+    {
+      "id": "mobile-source-return",
+      "title": "360px summary-to-source focus",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "reduce",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Use a fresh 360px viewport with reduced-motion enabled; inspect reading and relation cues.",
+        "Dismiss the introductory notice.",
+        "Switch the mobile review section to 材料 with reduced motion still enabled.",
+        "Switch the mobile review section to 时间线 with reduced motion still enabled.",
+        "Switch the mobile review section to 矛盾 with reduced motion still enabled.",
+        "Switch the mobile review section to 摘要 with reduced motion still enabled.",
+        "Return to materials, select the sample first-paragraph text and save an annotation with default values; allow the source-focus scroll to settle.",
+        "Add the annotation as an event, switch to timeline and bring the new event into view.",
+        "Switch to summary after annotation and event creation; inspect the draft disclaimer and return-to-source controls.",
+        "Follow the first summary return-to-source control back to materials with reduced motion enabled."
+      ],
+      "frames": [
+        {
+          "path": "images/mobile-source-return-01.png",
+          "elapsed_ms": 7356
+        }
+      ],
+      "criterion_ids": [
+        "1.2",
+        "1.3",
+        "1.4"
+      ]
+    }
+  ]
+}

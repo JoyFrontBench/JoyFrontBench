@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-017",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "工程边界与数据可视化内核——成品应是离线自足的 Vite React TypeScript 多文件工程，解析、推断、聚合、推荐、联动和导出逻辑独立可测。",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "工程包含 package.json、index.html、src/main.tsx、src/App.tsx、README.md，并提供 dev、build、test、typecheck 或 lint 脚本且依赖不使用 latest"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "CSV/JSON 解析、字段类型推断、数据质量警告、统计聚合、图表推荐、图表几何生成、筛选联动、洞察候选、导出准备和持久化恢复拆分到不依赖 React 的模块"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "图表由项目自绘 SVG 或 Canvas 基于当前数据渲染，未用 ECharts、Chart.js、D3 等库替代核心渲染逻辑，也不是静态图片占位"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "运行期不请求远程数据、远程字体、远程图片、在线 AI 或后端 API，未使用 dangerouslySetInnerHTML 或整页字符串模板。"
+        }
+      ]
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "本地数据导入、示例数据与字段识别——用户选择示例或导入 CSV/JSON 后，系统必须生成可用于看板的结构化数据、schema 和质量提示。",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "内置至少三套确定性示例数据，覆盖通勤、气候风险、公共预算等不同主题，且包含数值、分类、日期、百分比、区域、枚举等级和文本说明字段"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "CSV 导入支持表头、引号转义、空值和百分号，JSON 导入支持对象数组及根对象多数组选择，非法或空数据给出明确错误且保留当前看板"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "字段类型推断至少区分 number、category、date、percent、region、text、boolean，并允许人工改写后立即重算图表推荐和看板"
+        },
+        {
+          "criterion_id": "2.4",
+          "text": "字段面板展示缺失率、唯一值数量、数值范围或类别样例，并提示空值过多、日期解析失败、数值混入文本、类别过多和百分比越界等质量问题。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：清空 localStorage，打开工作台并准备一份合法 CSV、一份多数组 JSON 和一份非法 JSON。",
+          "**验证点 1（示例覆盖）**：依次切换三套示例数据 → 断言每套数据能生成 schema 与看板，字段类型覆盖题面要求的主要类型。",
+          "**验证点 2（导入成功与失败）**：导入合法 CSV、多数组 JSON、非法 JSON → 断言合法数据可选择并生成看板，多数组 JSON 有数组选择，非法数据报错且原看板不被破坏。",
+          "**验证点 3（类型改写联动）**：把一个字段类型从 category 改为 region 或从 text 改为 category → 断言图表推荐、字段可选项和当前看板立即重算。",
+          "**验证点 4（质量提示）**：导入包含空值、坏日期、百分比越界和类别过多的数据 → 断言字段面板给出对应质量警告和样例信息。"
+        ]
+      }
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "自动看板生成与图表类型覆盖——导入数据后应自动生成多图表数据新闻看板，而不是只显示表格、KPI 或写死示例字段。",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "导入或切换数据集后自动生成至少四张图表卡片和一张关键指标卡，字段映射来自当前 schema，不依赖固定示例字段名"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "至少实现 metric-card、bar、stacked-bar、line、area、scatter、heatmap、small-multiples 八类图表或卡片，并由当前 filtered rows 派生"
+        },
+        {
+          "criterion_id": "3.3",
+          "text": "每张图表都有结论式标题、解释字段含义的副标题、图例、单位、来源或数据集名、空状态和图表级配置入口"
+        },
+        {
+          "criterion_id": "3.4",
+          "text": "高类别字段在 bar 图中默认 Top N 合并“其他”，百分比构成图显示总和校验，图表推荐符合 date+number、category+number、number+number、region+number 等规则。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：加载默认示例数据，再切换到另外两套示例数据。",
+          "**验证点 1（自动生成）**：每次切换数据集 → 断言看板自动出现至少四张图表和一张 KPI，图表字段随数据集变化而不是保持旧字段。",
+          "**验证点 2（图表覆盖）**：在配置面板切换或新增图表类型 → 断言八类图表或卡片均可展示真实数据派生结果。",
+          "**验证点 3（图表四件套）**：检查任一图表卡片 → 断言标题、副标题、图例、单位、来源、空状态和配置入口齐全。",
+          "**验证点 4（推荐与边界）**：选择日期数值、分类数值、双数值、区域数值和高类别字段 → 断言推荐图表、Top N 合并和百分比总和提示符合题面规则。"
+        ]
+      }
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "洞察标注与数据故事——系统应能从当前数据生成候选洞察，用户可采纳、编辑、删除并随图表导出。",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "系统基于当前 filtered rows 自动生成至少三条候选洞察，覆盖最大值、最小值、增长最快、异常离群点或 Top 类别集中度中的多种"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "用户可给任意图表添加洞察标注，标注包含标题、说明、绑定图表 id、可选字段/类别/日期和重要性"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "标注显示在对应图表卡片中，可编辑、删除、折叠，删除图表时相关标注级联删除或提示迁移"
+        },
+        {
+          "criterion_id": "4.4",
+          "text": "洞察文案和导出内容基于真实聚合值，筛选或配置变化后候选洞察重算，不能写死示例结论。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：打开默认示例数据，确保看板已有多个图表。",
+          "**验证点 1（候选洞察）**：查看洞察面板 → 断言至少三条候选洞察来自当前数据，并包含真实数值或类别。",
+          "**验证点 2（添加标注）**：采纳一条候选洞察并手动新增一条高重要性标注 → 断言标注绑定到指定图表并写入看板状态。",
+          "**验证点 3（编辑删除级联）**：编辑、折叠、删除标注，再删除其绑定图表 → 断言图表卡片和状态中的标注同步更新或出现迁移提示。",
+          "**验证点 4（筛选重算）**：应用筛选条件 → 断言候选洞察和导出预览中的数值随 filtered rows 重算。"
+        ]
+      }
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pointwise",
+      "task": "导出 HTML、图像与看板 JSON——导出必须反映当前看板状态，离线可打开，且不包含编辑器侧栏或配置控件。",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "单 HTML 导出包含当前看板图表、标题、副标题、图例、标注、筛选摘要和来源说明，离线可打开，不依赖工程 CSS、远程脚本或网络资源"
+        },
+        {
+          "criterion_id": "5.2",
+          "text": "支持至少导出当前选中图表为 SVG，若支持 PNG 则说明浏览器兼容边界"
+        },
+        {
+          "criterion_id": "5.3",
+          "text": "看板 JSON 包含 dataset schema、chart specs、filters、sorts、annotations、theme、source metadata 和 export signatures；"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：完成一次筛选、图表配置和洞察标注，使看板处于非默认状态。",
+          "**验证点 1（离线 HTML）**：导出 HTML 并在独立标签页或断网环境打开 → 断言图表、标注、筛选摘要和来源说明完整显示。",
+          "**验证点 2（图像导出）**：导出当前选中图表 SVG 或 PNG → 断言图像内容与当前图表一致，SVG 可独立打开。",
+          "**验证点 3（JSON 字段）**：导出看板 JSON → 断言包含 schema、chart specs、filters、sorts、annotations、theme、metadata 和签名。"
+        ]
+      }
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pointwise",
+      "task": "视觉、响应式与可访问性——页面应像数据新闻看板生成工具，图表是主体，桌面和 360px 都能完成核心流程。",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "视觉符合“数据新闻编辑室 + 现代可视化看板”：浅色高对比、清晰网格、纸白卡片、墨蓝标题、克制强调色，图表区域是首屏主体，不是合规审批台、金融皮肤、赛博监控台或营销页；"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**验证点 1（视觉定位）**：首次进入页面 → 断言看板图表占据主体，风格符合数据新闻编辑工具，没有审批状态墙、金融交易皮肤或营销 hero。"
+        ]
+      }
+    }
+  ]
+}

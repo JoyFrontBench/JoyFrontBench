@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "protocol": "frozen-visual",
+  "question_id": "frontenjoyai-008",
+  "task_ids": [
+    "8"
+  ],
+  "capture": {
+    "browser": "Google Chrome",
+    "locale": "zh-CN",
+    "timezone": "UTC"
+  },
+  "evidence_scope": "criterion_ids identify relevant comparison views, not proof that a criterion passes. PNGs are unretouched browser captures. Finite samples cannot prove unseen states, source facts or continuous behavior. Keep the original rubric; use needs_review if missing evidence determines the GSB decision.",
+  "comparison_limits": [
+    {
+      "criterion_ids": [
+        "8.3"
+      ],
+      "not_established": "Creature illustration pixels can be inspected for style, but originality, asset provenance and copyright clearance cannot be established from screenshots."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "world",
+      "title": "Pixel-art overworld",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Press the A/J action key to start a new journey."
+      ],
+      "frames": [
+        {
+          "path": "images/world-01.png",
+          "elapsed_ms": 6404
+        }
+      ],
+      "criterion_ids": [
+        "8.1",
+        "8.2"
+      ]
+    },
+    {
+      "id": "field-menu",
+      "title": "Pixel menu and map styling",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Press the A/J action key to start a new journey.",
+        "Open the Start/L field menu."
+      ],
+      "frames": [
+        {
+          "path": "images/field-menu-01.png",
+          "elapsed_ms": 9560
+        }
+      ],
+      "criterion_ids": [
+        "8.1",
+        "8.2"
+      ]
+    },
+    {
+      "id": "creature-detail",
+      "title": "Pixel creature illustration and detail card",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Press the A/J action key to start a new journey.",
+        "Open the Start/L field menu.",
+        "Open the first field-menu item to inspect the creature index.",
+        "Open the first creature index entry to display its illustrated detail card."
+      ],
+      "frames": [
+        {
+          "path": "images/creature-detail-01.png",
+          "elapsed_ms": 11165
+        }
+      ],
+      "criterion_ids": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ]
+    }
+  ]
+}

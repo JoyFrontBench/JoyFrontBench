@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-022",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "帧画面必须渲染清晰可辨识的目标而非空背景+框，并区分四类视觉语义：正常/低置信度/重复事件显示动物主体+检测框；漏报显示动物主体但无检测框；误报显示岩石/枝叶等非动物干扰物+错误检测框。",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "正常、低置信度、重复事件帧内可见可辨识的动物主体，检测框包围该主体，不是空背景配框"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "漏报事件帧内有可辨识动物主体但不渲染检测框"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "误报事件帧内渲染岩石/枝叶等非动物干扰物，且错误检测框套在干扰物上，而非动物。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：借助筛选或事件列表分别定位一个正常、一个低置信度、一个重复、一个漏报、一个误报事件。",
+          "**验证点 1（有物有框）**：跳到正常/低置信/重复三类事件对应帧 → 断言均可见动物主体且检测框包围主体。",
+          "**验证点 2（漏报）**：跳到漏报事件帧 → 断言可见动物主体但无检测框。",
+          "**验证点 3（误报）**：跳到误报事件帧 → 断言画面为非动物干扰物且错误检测框套住干扰物，而非动物。"
+        ]
+      }
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "中央帧播放器由 Canvas/SVG 程序化生成，支持播放/暂停/跳转，检测框随当前帧移动变化而非静态装饰；连续 Play/Pause 不得创建多个 timer 或导致播放加速，暂停/切换相机后无残留 timer。",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "帧内容随时间推进变化，检测框位置/姿态在相邻帧间产生合理变化，非固定叠加的静态矩形"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "连续多次 Play/Pause 后仍只有单一活动 timer——播放速度不随点击次数累加；"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：选定一台在线相机进入播放视图，记录初始帧序号与当前检测框位置。",
+          "**验证点 1（帧驱动检测框）**：播放推进若干帧 → 断言帧画面变化、检测框位置/姿态随帧改变；暂停 → 断言帧停止推进。",
+          "**验证点 2（timer 不泄漏）**：连续快速 Play/Pause/Play 多次后保持播放 → 断言帧推进速度与单次播放一致（未加速）；随后暂停 → 断言帧完全停止、无后台继续推进。"
+        ]
+      }
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "时间轴、帧 overlay、事件列表、统计卡（复核进度/误报率/高风险/发送成功率）必须读取同一份事件状态；任一复核操作都要让四处同步刷新，不出现「列表已标误报但统计仍按正常算」「时间轴变了但 overlay 没变」的矛盾中间态。",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "四处同源于同一份事件状态，不存在各自维护、互相矛盾的副本"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "对某事件做一次复核操作后，四处在同一交互内一致更新，统计数值与列表/overlay 口径自洽"
+        },
+        {
+          "criterion_id": "3.3",
+          "text": "撤销或改回复核结论后，四处一致回退，无残留脏状态。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：选定一台在线相机、不加筛选；记录列表条数、时间轴事件点、当前帧 overlay、以及四项统计。",
+          "**验证点 1（复核联动一致）**：将某事件标为 false positive → 断言列表状态变更、时间轴对应点样式变化、当前帧 overlay 同步、误报率与复核进度同步重算，四处无矛盾。",
+          "**验证点 2（口径自洽）**：手算已复核事件中 false positive 数 ÷ 已复核数 → 断言与统计卡「误报率」一致。",
+          "**验证点 3（回退一致）**：将该事件改回 needs review → 断言四处一致回到前置口径，无残留误报态。"
+        ]
+      }
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "被标 false positive 的事件，其处于 pending 的告警转为 suppressed（原因记为 false-positive），已 sent/failed 的告警保留记录但计入「已发出的误报」统计；标 confirmed / needs review 不抑制其告警，needs review + 高风险规则的事件计入「未处理高风险」统计。",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "将某命中规则、有 pending 告警的事件标为 false positive 时，其 pending 告警转为 suppressed 且标 false-positive 原因，而非物理删除"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "已 sent/failed 的告警在事件被标 false positive 后仍保留记录，但计入「已发出的误报」、不再作为待处理项"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "标 confirmed / needs review 不抑制其告警；needs review + 高风险规则的事件计入「未处理高风险」统计。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：定位一个命中规则、当前有 pending 告警的事件 A；另定位一个已 sent 告警对应的事件 B。",
+          "**验证点 1（pending→suppressed）**：将 A 标为 false positive → 断言其 pending 告警在队列中转 suppressed 且原因为 false-positive，成功率分母相应变化。",
+          "**验证点 2（已发误报保留）**：将 B 标为 false positive → 断言其 sent 记录保留、计入「已发出的误报」、不再列为待处理。",
+          "**验证点 3（confirmed 不抑制 + 高风险计数）**：将 A 改回 needs review → 断言告警不再被 false-positive 抑制；若 A 命中高风险规则 → 断言计入「未处理高风险」。"
+        ]
+      }
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pointwise",
+      "task": "重复告警抑制必须基于 camera + species + 时间窗口，而非仅按事件 id 去重；同一相机、同一物种且落在同一抑制窗口内的多次触发只保留首个告警，其余记为 suppressed；窗口大小以规则配置的 suppressionWindowMinutes 为准，未配置时用系统默认（如 10 分钟）。",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "去重以 camera + species + 时间窗口为键，同键窗口内仅首个告警保留、其余标 suppressed，而非按事件 id 各自独立生成"
+        },
+        {
+          "criterion_id": "5.2",
+          "text": "改变抑制窗口大小会改变被抑制的事件集合"
+        },
+        {
+          "criterion_id": "5.3",
+          "text": "不同相机或不同物种即使时间相近也不互相抑制（键不同）。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：定位同一相机、同一物种、短时间内多次触发的一组事件（落入默认窗口内）。",
+          "**验证点 1（窗口内去重）**：查看队列/规则测试 → 断言该组仅首个为 sent/pending、其余 suppressed，而非每个都生成告警。",
+          "**验证点 2（窗口大小影响）**：将该规则窗口调小使部分事件落到窗口外 → 断言被抑制数量减少；调大 → 断言增加。",
+          "**验证点 3（不同键不互抑）**：对不同相机或不同物种的相近时间事件 → 断言彼此不抑制、各自独立成告警。"
+        ]
+      }
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pointwise",
+      "task": "模拟发送队列含 pending/sent/failed/suppressed 四态，首次发送成败由 seed 决定（可复现）；failed 告警可 retry，retry 成败同样由 seed 决定但保证有限次内可成功；retry 只更新该告警的状态与尝试次数，不得生成重复告警记录。",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "failed 告警可 retry，且存在确定性成功路径——有限次 retry 后可变为 sent、成功率可通过 retry 提升"
+        },
+        {
+          "criterion_id": "6.2",
+          "text": "retry 只更新原告警状态与 attempts，不新增重复记录，队列总条数不因 retry 增加"
+        },
+        {
+          "criterion_id": "6.3",
+          "text": "连续快速点击 retry 不产生并发重复发送或多条重复记录。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：定位一条 failed 告警，记录队列总条数、成功率与该告警 attempts。",
+          "**验证点 1（retry 幂等）**：对该告警点 retry（含连续快速点击）→ 断言队列总条数不变、不新增重复记录、attempts 递增。",
+          "**验证点 2（确定性成功）**：继续 retry 至其成功 → 断言状态变 sent、成功率上升，且过程可复现（同 seed 同结果）。",
+          "**验证点 3（不影响他项）**：断言其它告警状态未被本次 retry 误改。"
+        ]
+      }
+    },
+    {
+      "task_id": "7",
+      "judge_mode": "pointwise",
+      "task": "用户修正物种后，告警预览、风险统计与队列结果同步更新；由于去重键含 species，修正可能导致去重分组重排；已处于 sent/failed 终态的投递记录不物理删除，若因修正不再成立则转为 suppressed 并标注原因，保证队列可追溯、成功率变化可解释。",
+      "criteria": [
+        {
+          "criterion_id": "7.1",
+          "text": "修正某事件物种后，其规则匹配、告警预览与风险统计随新物种重算同步刷新"
+        },
+        {
+          "criterion_id": "7.2",
+          "text": "去重分组随 species 变化重排——原被抑制的重复可能解除抑制、或原独立告警被并入抑制"
+        },
+        {
+          "criterion_id": "7.3",
+          "text": "已 sent/failed 的告警不被物理删除；若因修正不再成立则转 suppressed 并标原因，成功率变化可由队列记录解释。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：定位一个因物种 A 命中规则、并与同相机同物种事件构成去重分组的事件；记录当前告警预览、队列与成功率。",
+          "**验证点 1（预览/统计传播）**：将其物种修正为不命中规则的物种 B → 断言其告警在预览/队列中转 suppressed 或不再触发，风险统计与成功率同步更新。",
+          "**验证点 2（去重重排）**：观察原同组重复事件 → 断言去重分组随 species 变化重排。",
+          "**验证点 3（终态可追溯）**：若该事件此前已 sent/failed → 断言记录未被删除、而是转 suppressed 并标原因。"
+        ]
+      }
+    },
+    {
+      "task_id": "8",
+      "judge_mode": "pointwise",
+      "task": "复核 session、筛选器、当前相机、规则开关写入 localStorage/IndexedDB，刷新后自动恢复；坏值（非 JSON、缺字段、超范围）不能导致白屏，须回退安全默认；离线相机作为 seed 静态属性可查看历史帧但不产生新检测/补标。",
+      "criteria": [
+        {
+          "criterion_id": "8.1",
+          "text": "复核 session、筛选器、当前相机、规则开关刷新后恢复到上次状态，且各视图与统计与刷新前一致"
+        },
+        {
+          "criterion_id": "8.2",
+          "text": "持久化数据被写入损坏/非法值时页面仍正常渲染、退回安全默认，不抛未捕获异常导致白屏"
+        },
+        {
+          "criterion_id": "8.3",
+          "text": "离线相机可查看历史帧与既有检测，但不生成新检测、补标入口不可用。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：正常使用产生若干持久化状态（做几次复核、设定筛选器、切换当前相机、开关某规则）。",
+          "**验证点 1（刷新恢复）**：刷新页面 → 断言复核结论、筛选器、当前相机与规则开关全部恢复，统计与刷新前一致。",
+          "**验证点 2（坏值容错）**：将某持久化键改为乱码/非法 JSON/缺字段后刷新 → 断言页面正常渲染、退回默认、控制台无致命未捕获异常、无白屏。",
+          "**验证点 3（离线相机）**：选中一台离线相机 → 断言可查看历史帧与既有检测，但无新检测产生、补标入口不可用。"
+        ]
+      }
+    }
+  ]
+}

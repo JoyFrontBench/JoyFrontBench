@@ -1,0 +1,24 @@
+{
+  "name": "front-auto-eval",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Automated evaluation for the JoyFrontBench public 30-problem set.",
+  "scripts": {
+    "eval": "node scripts/cli.mjs eval:pipeline",
+    "eval:pipeline": "node scripts/cli.mjs eval:pipeline",
+    "eval:batch": "node scripts/cli.mjs eval:batch",
+    "judge": "node scripts/cli.mjs judge",
+    "judge:strict": "node scripts/cli.mjs judge:strict",
+    "score:final": "node scripts/cli.mjs score:final",
+    "check": "node scripts/cli.mjs check",
+    "test": "node scripts/cli.mjs test",
+    "references:verify": "node scripts/cli.mjs references:verify"
+  },
+  "dependencies": {
+    "playwright": "1.58.1"
+  },
+  "engines": {
+    "node": ">=18.19.0"
+  }
+}

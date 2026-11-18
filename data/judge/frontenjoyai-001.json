@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-001",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "文件上传与下载",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "可以正常上传示例excel"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "导出json数据与原数据对应正确"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "导出数值保留两位小数"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "导出的格式正确"
+        },
+        {
+          "criterion_id": "1.5",
+          "text": "导出的数据与筛选条件对应正确"
+        },
+        {
+          "criterion_id": "1.6",
+          "text": "导出内容完整：正确导出 JSON 中包含 metadata、flow_values 和 cumulative_ratio。"
+        }
+      ]
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "网页内所有按钮均可正常点击并执行对应功能（如跳转页面或转换形式等）",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "顶部的使用帮助：点击后是否能正常展示"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "选项：勾选条件后是否正常完成对应变动"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "1 对策略、渠道、用户分层更换筛选条件后，数据是否正确对应更改并显示"
+        },
+        {
+          "criterion_id": "2.4",
+          "text": "2批量编辑：勾选对应更改条件后，下方可视化的图标是否有对应更改"
+        }
+      ]
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "可以成功拽动曲线，拽动后另一个曲线也对应变换",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "流量曲线以及累计占比曲线均可以向上自由拽动以及向下自由拽动"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "拽动一类曲线后，另一种曲线也对应变动"
+        },
+        {
+          "criterion_id": "3.3",
+          "text": "拖拽点超过纵轴上限时，纵轴能自动并顺滑地扩展"
+        },
+        {
+          "criterion_id": "3.4",
+          "text": "同日人群联动模式下拖拽可以实现所有对应曲线的共同变动，单曲线编辑模式只影响当前曲线。"
+        },
+        {
+          "criterion_id": "3.5",
+          "text": "精准模式+模糊模式各自拖拽曲线后的曲线形态正确"
+        }
+      ]
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "当存在 12 个人群时，每个日期区域采用 4 行 × 3 列布局。",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "曲线图是否是 4 行 × 3 列布局"
+        }
+      ]
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pairwise_gsb",
+      "task": "页面整体视觉清晰、美观，适合内部业务人员使用。",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "清晰、美观"
+        }
+      ]
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pointwise",
+      "task": "缺失时间点会展示在图上，数值为 0。",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "对照着模拟生成的数据检查：时间节点是模拟数据中设为缺失点的部分，对应的数据应该为0"
+        }
+      ]
+    },
+    {
+      "task_id": "7",
+      "judge_mode": "pointwise",
+      "task": "数据按 10 分钟粒度补齐，每日每条曲线有 144 个点。",
+      "criteria": [
+        {
+          "criterion_id": "7.1",
+          "text": "对于任意曲线观察数据是否是10分钟粒度"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/front/opencode-run-metadata.schema.json",
+  "title": "Front OpenCode Run Metadata",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "status",
+    "engine",
+    "model",
+    "task",
+    "run",
+    "configuration"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "status": {
+      "type": "string"
+    },
+    "engine": {
+      "type": "object",
+      "required": [
+        "name",
+        "version"
+      ]
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "alias",
+        "model",
+        "opencodeModel",
+        "providerNpm",
+        "enabled",
+        "credentialsAvailable",
+        "authType",
+        "wireApi",
+        "wirePath",
+        "contextTokens",
+        "request",
+        "reasoningEffort"
+      ]
+    },
+    "task": {
+      "type": "object",
+      "required": [
+        "id",
+        "path"
+      ]
+    },
+    "run": {
+      "type": "object",
+      "required": [
+        "id",
+        "createdAt",
+        "runDir",
+        "workspace",
+        "conversation",
+        "maxSteps"
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "required": [
+        "path"
+      ]
+    },
+    "runtime": {
+      "type": "object",
+      "required": [
+        "playwrightVersion",
+        "playwrightBrowsersPath"
+      ],
+      "properties": {
+        "playwrightVersion": {
+          "type": "string"
+        },
+        "playwrightBrowsersPath": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

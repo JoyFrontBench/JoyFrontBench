@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-003",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "全代码绘制视觉，无外部图片 / 3D 模型",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "iPhone 主视觉、品牌 Logo、图标、装饰图形均由 CSS / SVG / Canvas 绘制；检查页面源码与网络请求，无任何外部图片（png/jpg/svg 文件）或 3D 模型文件引用；绘制效果精致、非简陋色块堆砌。"
+        }
+      ]
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "产品画廊 / 媒体展示",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "存在专门的画廊/展示区"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "**体现 iPhone 的多角度或多形态展示**（至少呈现正面之外的其它角度，如背面/侧面/斜视角，或多颜色形态切换）"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "切换展示项时有平滑过渡"
+        },
+        {
+          "criterion_id": "2.4",
+          "text": "展示效果精致、层级清晰。反例（高频）：**画廊只有单一角度/单一正面视图**，没有多角度或多形态，展示单调。"
+        }
+      ]
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "颜色 / 容量选配的动态渲染与联动",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "切换颜色后，产品主视觉的机身配色实时更新为对应色值"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "切换机型 / 容量后，价格实时重算并正确展示（价格 = 机型+容量对应价，与内置数据一致）"
+        },
+        {
+          "criterion_id": "3.3",
+          "text": "不出现\"数据变了但界面没变\"。"
+        }
+      ]
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "交互与滚动体验",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "顶部导航锚点点击后平滑滚动到对应区块"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "**导航栏能标示当前所在区块——点击某锚点或滚动到某区块时，对应导航项有明显的形态区分（颜色变化 / 高亮 / 下划线 / 加粗等）"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "滚动时导航栏有状态变化（毛玻璃/收缩等）、区块有合理入场反馈"
+        },
+        {
+          "criterion_id": "4.4",
+          "text": "交互体验区图形随滑动/拖动/滚动实时平滑变化，不卡顿、不突兀。反例（高频）：**点击导航后仅页面滚动，但导航栏文字无任何区分**，看不出当前处于哪个区块（无高亮/无颜色或形态变化）。"
+        }
+      ]
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pointwise",
+      "task": "组件完整性",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "导航栏、按钮、产品卡片、规格对比表、选配器、页脚等组件齐全；各交互入口均可点击并有 hover / active 等状态反馈；无缺失核心组件。"
+        }
+      ]
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pairwise_gsb",
+      "task": "整体美观与一致性",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "高端 Apple 官网气质：留白、配色克制、层级清晰、排版精致。"
+        },
+        {
+          "criterion_id": "6.2",
+          "text": "字体有设计感，非系统默认的平庸观感。"
+        },
+        {
+          "criterion_id": "6.3",
+          "text": "无一眼假的通用 AI 生成风格；配色布局有惊喜且统一。"
+        },
+        {
+          "criterion_id": "6.4",
+          "text": "各组件视觉风格统一。"
+        },
+        {
+          "criterion_id": "6.5",
+          "text": "主流桌面分辨率下无严重错位。"
+        },
+        {
+          "criterion_id": "6.6",
+          "text": "窄屏（移动端宽度）下可基本使用，信息密度合理。"
+        }
+      ]
+    }
+  ]
+}

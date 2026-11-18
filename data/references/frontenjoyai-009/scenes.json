@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "protocol": "frozen-visual",
+  "question_id": "frontenjoyai-009",
+  "task_ids": [
+    "5"
+  ],
+  "capture": {
+    "browser": "Google Chrome",
+    "locale": "zh-CN",
+    "timezone": "UTC"
+  },
+  "evidence_scope": "criterion_ids identify relevant comparison views, not proof that a criterion passes. PNGs are unretouched browser captures. Finite samples cannot prove unseen states, source facts or continuous behavior. Keep the original rubric; use needs_review if missing evidence determines the GSB decision.",
+  "comparison_limits": [
+    {
+      "criterion_ids": [
+        "5.3",
+        "5.4"
+      ],
+      "not_established": "Only successful and partial-failure result views are published. Absence of distracting animation and backend functionality cannot be established from these stills."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "query-result",
+      "title": "Successful query and price emphasis",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Select the built-in normal-success query sample and start the local simulated promotion query.",
+        "Wait for the local simulated query to finish, displaying promotion and real-time price results."
+      ],
+      "frames": [
+        {
+          "path": "images/query-result-01.png",
+          "elapsed_ms": 6128
+        }
+      ],
+      "criterion_ids": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ]
+    },
+    {
+      "id": "partial-failure",
+      "title": "Partial-failure result presentation",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Run the built-in partial-failure sample and inspect result/error presentation."
+      ],
+      "frames": [
+        {
+          "path": "images/partial-failure-01.png",
+          "elapsed_ms": 5382
+        }
+      ],
+      "criterion_ids": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ]
+    }
+  ]
+}

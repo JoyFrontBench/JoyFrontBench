@@ -1,0 +1,329 @@
+{
+  "version": 2,
+  "defaults": {
+    "apiBase": "https://api.example.com/v1",
+    "apiKeyEnv": "OPENAI_API_KEY",
+    "authType": "bearer",
+    "litellmProvider": "openai",
+    "retries": 3,
+    "timeoutMs": 3600000,
+    "wireApi": "chat.completions"
+  },
+  "models": {
+    "chat_model": {
+      "label": "chat_model",
+      "model": "chat_model",
+      "aliases": [
+        "chat_model_alias"
+      ],
+      "enabledEnv": "TEST_MODEL_ENABLED",
+      "contextTokens": 1000000,
+      "request": {
+        "maxTokens": 131072,
+        "maxTokensField": "max_tokens",
+        "temperature": 1,
+        "topP": 0.95,
+        "extraBody": {
+          "chat_template_kwargs": {
+            "enable_thinking": true
+          },
+          "separate_reasoning": true
+        }
+      },
+      "reasoningEffort": {
+        "requestPath": [
+          "reasoning_effort"
+        ],
+        "levels": [
+          "minimal",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ],
+        "default": "high"
+      },
+      "apiKeyEnv": "OPENAI_API_KEY",
+      "apiBase": "https://api.example.com/v1",
+      "compatibility": {
+        "retryModelServiceErrors": true
+      }
+    },
+    "tool_chat_model": {
+      "label": "tool_chat_model",
+      "model": "tool_chat_model",
+      "aliases": [
+        "tool_chat_model_alias"
+      ],
+      "apiBase": "https://api.example.com/v1",
+      "apiKeyEnv": "OPENAI_API_KEY",
+      "enabledEnv": "TEST_MODEL_ENABLED",
+      "contextTokens": 1000000,
+      "opencode": {
+        "initialToolChoice": "required"
+      },
+      "request": {
+        "maxTokens": 131072,
+        "maxTokensField": "max_tokens",
+        "temperature": null,
+        "topP": null,
+        "extraBody": {
+          "separate_reasoning": true
+        }
+      },
+      "reasoningEffort": {
+        "requestPath": [
+          "reasoning_effort"
+        ],
+        "levels": [
+          "low",
+          "high",
+          "max"
+        ],
+        "default": "high"
+      },
+      "compatibility": {
+        "flattenTextContent": true,
+        "roundTripReasoningContent": true,
+        "retryModelServiceErrors": true
+      }
+    },
+    "reasoning_chat_model": {
+      "label": "reasoning_chat_model",
+      "model": "reasoning_chat_model",
+      "aliases": [
+        "reasoning_chat_model_alias"
+      ],
+      "enabledEnv": "TEST_MODEL_ENABLED",
+      "contextTokens": 1000000,
+      "request": {
+        "maxTokens": 131072,
+        "maxTokensField": "max_tokens",
+        "temperature": null,
+        "topP": null,
+        "extraBody": {
+          "enable_thinking": true,
+          "separate_reasoning": true
+        }
+      },
+      "reasoningEffort": {
+        "requestPath": [
+          "reasoning_effort"
+        ],
+        "levels": [
+          "high"
+        ],
+        "default": "high"
+      },
+      "apiKeyEnv": "OPENAI_API_KEY",
+      "apiBase": "https://api.example.com/v1",
+      "compatibility": {
+        "retryModelServiceErrors": true
+      }
+    },
+    "alternate_chat_model": {
+      "label": "alternate_chat_model",
+      "model": "reasoning_chat_model",
+      "aliases": [
+        "alternate_chat_model_alias"
+      ],
+      "enabledEnv": "TEST_MODEL_ENABLED",
+      "apiBase": "https://api.example.com/v1",
+      "apiKeyEnv": "OPENAI_API_KEY",
+      "contextTokens": 1000000,
+      "request": {
+        "maxTokens": 131072,
+        "maxTokensField": "max_tokens",
+        "temperature": null,
+        "topP": null,
+        "extraBody": {
+          "enable_thinking": true,
+          "separate_reasoning": true
+        }
+      },
+      "reasoningEffort": {
+        "requestPath": [
+          "reasoning_effort"
+        ],
+        "levels": [
+          "high"
+        ],
+        "default": "high"
+      },
+      "compatibility": {
+        "retryModelServiceErrors": true
+      }
+    },
+    "reasoning_roundtrip_model": {
+      "label": "reasoning_roundtrip_model",
+      "model": "reasoning_roundtrip_model",
+      "aliases": [
+        "reasoning_roundtrip_model_alias"
+      ],
+      "enabledEnv": "TEST_MODEL_ENABLED",
+      "apiBase": "https://api.example.com/v1",
+      "apiKeyEnv": "OPENAI_API_KEY",
+      "contextTokens": 1000000,
+      "request": {
+        "maxTokens": 131072,
+        "maxTokensField": "max_tokens",
+        "temperature": null,
+        "topP": null,
+        "extraBody": {
+          "thinking": {
+            "type": "enabled"
+          },
+          "separate_reasoning": true
+        }
+      },
+      "reasoningEffort": {
+        "requestPath": [
+          "reasoning_effort"
+        ],
+        "levels": [
+          "high"
+        ],
+        "default": "high"
+      },
+      "compatibility": {
+        "roundTripReasoningContent": true,
+        "retryModelServiceErrors": true
+      }
+    },
+    "anthropic_model": {
+      "label": "anthropic_model",
+      "model": "anthropic_model",
+      "aliases": [
+        "anthropic_model_alias"
+      ],
+      "enabledEnv": "TEST_MODEL_ENABLED",
+      "apiBase": "https://api.example.com/anthropic",
+      "authType": "x-api-key",
+      "wireApi": "anthropic.messages",
+      "wirePath": "/v1/messages",
+      "litellmProvider": "anthropic",
+      "contextTokens": 1000000,
+      "request": {
+        "maxTokens": 131072,
+        "maxTokensField": "max_tokens",
+        "temperature": null,
+        "topP": null,
+        "extraBody": {}
+      },
+      "reasoningEffort": {
+        "requestPath": [
+          "output_config",
+          "effort"
+        ],
+        "levels": [
+          "high"
+        ],
+        "default": "high"
+      },
+      "apiKeyEnv": "OPENAI_API_KEY",
+      "compatibility": {
+        "retryModelServiceErrors": true
+      }
+    },
+    "extended_anthropic_model": {
+      "label": "extended_anthropic_model",
+      "model": "extended_anthropic_model",
+      "aliases": [
+        "extended_anthropic_model_alias"
+      ],
+      "enabledEnv": "TEST_MODEL_ENABLED",
+      "apiBase": "https://api.example.com/anthropic",
+      "authType": "bearer",
+      "wireApi": "anthropic.messages",
+      "wirePath": "/v1/messages",
+      "litellmProvider": "anthropic",
+      "contextTokens": 1000000,
+      "request": {
+        "maxTokens": 128000,
+        "maxTokensField": "max_tokens",
+        "temperature": null,
+        "topP": null,
+        "extraBody": {}
+      },
+      "reasoningEffort": {
+        "requestPath": [
+          "output_config",
+          "effort"
+        ],
+        "levels": [
+          "high"
+        ],
+        "default": "high"
+      },
+      "apiKeyEnv": "OPENAI_API_KEY",
+      "compatibility": {
+        "normalizeAnthropicCostEvents": true,
+        "retryModelServiceErrors": true
+      }
+    },
+    "responses_model": {
+      "label": "responses_model",
+      "model": "responses_model",
+      "aliases": [
+        "responses_model_alias"
+      ],
+      "enabledEnv": "TEST_MODEL_ENABLED",
+      "wireApi": "responses",
+      "contextTokens": 1000000,
+      "request": {
+        "maxTokens": 131072,
+        "maxTokensField": "max_output_tokens",
+        "temperature": null,
+        "topP": null,
+        "extraBody": {}
+      },
+      "reasoningEffort": {
+        "requestPath": [
+          "reasoning",
+          "effort"
+        ],
+        "levels": [
+          "high",
+          "xhigh"
+        ],
+        "default": "high"
+      },
+      "apiKeyEnv": "OPENAI_API_KEY",
+      "apiBase": "https://api.example.com/v1",
+      "compatibility": {
+        "retryModelServiceErrors": true
+      }
+    },
+    "string_content_model": {
+      "label": "string_content_model",
+      "model": "string_content_model",
+      "aliases": [
+        "string_content_model_alias"
+      ],
+      "enabledEnv": "TEST_MODEL_ENABLED",
+      "apiBase": "https://api.example.com/v1",
+      "apiKeyEnv": "OPENAI_API_KEY",
+      "authType": "bearer",
+      "requestIdHeader": "X-Request-ID",
+      "contextTokens": 200000,
+      "request": {
+        "maxTokens": 131072,
+        "maxTokensField": "max_tokens",
+        "temperature": 0,
+        "topP": null,
+        "extraBody": {
+          "doSample": false,
+          "timeout": 300000,
+          "separate_reasoning": true,
+          "chat_template_kwargs": {
+            "enable_thinking": true
+          }
+        }
+      },
+      "compatibility": {
+        "flattenTextContent": true,
+        "retryModelServiceErrors": true
+      }
+    }
+  }
+}

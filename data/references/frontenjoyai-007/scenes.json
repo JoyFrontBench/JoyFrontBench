@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "protocol": "frozen-visual",
+  "question_id": "frontenjoyai-007",
+  "task_ids": [
+    "8"
+  ],
+  "capture": {
+    "browser": "Google Chrome",
+    "locale": "zh-CN",
+    "timezone": "UTC"
+  },
+  "evidence_scope": "criterion_ids identify relevant comparison views, not proof that a criterion passes. PNGs are unretouched browser captures. Finite samples cannot prove unseen states, source facts or continuous behavior. Keep the original rubric; use needs_review if missing evidence determines the GSB decision.",
+  "comparison_limits": [
+    {
+      "criterion_ids": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "not_established": "Only the title and one early active-gameplay frame are published. Subsequent gameplay and game-over frames are intentionally omitted as unnecessary for the visual style comparison."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "initial",
+      "title": "Initial rendered view",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /."
+      ],
+      "frames": [
+        {
+          "path": "images/initial-01.png",
+          "elapsed_ms": 2415
+        }
+      ],
+      "criterion_ids": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ]
+    },
+    {
+      "id": "planet-play",
+      "title": "Cel-shaded planet — early active gameplay",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Enter nickname Visual Demo and start the game without subsequent movement. Inspect the early gameplay view before game over."
+      ],
+      "frames": [
+        {
+          "path": "images/planet-play-01.png",
+          "elapsed_ms": 8203
+        }
+      ],
+      "criterion_ids": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ]
+    }
+  ]
+}

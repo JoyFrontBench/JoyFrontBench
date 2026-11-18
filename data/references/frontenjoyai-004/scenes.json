@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "protocol": "frozen-visual",
+  "question_id": "frontenjoyai-004",
+  "task_ids": [
+    "9"
+  ],
+  "capture": {
+    "browser": "Google Chrome",
+    "locale": "zh-CN",
+    "timezone": "UTC"
+  },
+  "evidence_scope": "criterion_ids identify relevant comparison views, not proof that a criterion passes. PNGs are unretouched browser captures. Finite samples cannot prove unseen states, source facts or continuous behavior. Keep the original rubric; use needs_review if missing evidence determines the GSB decision.",
+  "comparison_limits": [
+    {
+      "criterion_ids": [
+        "9.2",
+        "9.4"
+      ],
+      "not_established": "The four screens and populated booking states are sampled at 390x844. Images do not establish all booking functionality or persistence."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "destinations-hotel",
+      "title": "Mobile destinations — hotel",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Filter destinations by hotel."
+      ],
+      "frames": [
+        {
+          "path": "images/destinations-hotel-01.png",
+          "elapsed_ms": 2969
+        }
+      ],
+      "criterion_ids": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5",
+        "9.6"
+      ]
+    },
+    {
+      "id": "destinations-island",
+      "title": "Mobile destinations — island",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Filter destinations by island."
+      ],
+      "frames": [
+        {
+          "path": "images/destinations-island-01.png",
+          "elapsed_ms": 2957
+        }
+      ],
+      "criterion_ids": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5",
+        "9.6"
+      ]
+    },
+    {
+      "id": "destinations-camp",
+      "title": "Mobile destinations — camp",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Filter destinations by camp."
+      ],
+      "frames": [
+        {
+          "path": "images/destinations-camp-01.png",
+          "elapsed_ms": 2993
+        }
+      ],
+      "criterion_ids": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5",
+        "9.6"
+      ]
+    },
+    {
+      "id": "booking-range",
+      "title": "Selected date range and price summary",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Select the first destination from the unfiltered list to open its booking calendar.",
+        "Advance to 2026年11月, select check-in day 10 and check-out day 13, keeping two guests and one room."
+      ],
+      "frames": [
+        {
+          "path": "images/booking-range-01.png",
+          "elapsed_ms": 3556
+        }
+      ],
+      "criterion_ids": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ]
+    },
+    {
+      "id": "booking-confirmation",
+      "title": "Booking confirmation overlay",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Select the first destination from the unfiltered list to open its booking calendar.",
+        "Advance to 2026年11月, select check-in day 10 and check-out day 13, keeping two guests and one room.",
+        "Confirm the sample booking to display its success summary."
+      ],
+      "frames": [
+        {
+          "path": "images/booking-confirmation-01.png",
+          "elapsed_ms": 4102
+        }
+      ],
+      "criterion_ids": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ]
+    },
+    {
+      "id": "booked-trip",
+      "title": "Populated trip card and booking details",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Select the first destination from the unfiltered list to open its booking calendar.",
+        "Advance to 2026年11月, select check-in day 10 and check-out day 13, keeping two guests and one room.",
+        "Confirm the sample booking to display its success summary.",
+        "Use the confirmation action to view the populated trips list."
+      ],
+      "frames": [
+        {
+          "path": "images/booked-trip-01.png",
+          "elapsed_ms": 4827
+        }
+      ],
+      "criterion_ids": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ]
+    },
+    {
+      "id": "screen-profile",
+      "title": "Travel app screen — profile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Filter destinations by camp.",
+        "Switch bottom navigation to book.",
+        "Switch bottom navigation to trips.",
+        "Switch bottom navigation to profile."
+      ],
+      "frames": [
+        {
+          "path": "images/screen-profile-01.png",
+          "elapsed_ms": 5010
+        }
+      ],
+      "criterion_ids": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5"
+      ]
+    }
+  ]
+}

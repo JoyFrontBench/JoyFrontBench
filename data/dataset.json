@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "questions": [
+    {
+      "number": 1,
+      "id": "frontenjoyai-001",
+      "categories": [
+        "数据可视化"
+      ],
+      "prompt_file": "tasks/joyfrontbench-001.md",
+      "judge_file": "judge/frontenjoyai-001.json"
+    },
+    {
+      "number": 2,
+      "id": "frontenjoyai-002",
+      "categories": [
+        "网页 / 业务界面",
+        "表单系统"
+      ],
+      "prompt_file": "tasks/joyfrontbench-002.md",
+      "judge_file": "judge/frontenjoyai-002.json"
+    },
+    {
+      "number": 3,
+      "id": "frontenjoyai-003",
+      "categories": [
+        "网页 / 业务界面",
+        "官网界面"
+      ],
+      "prompt_file": "tasks/joyfrontbench-003.md",
+      "judge_file": "judge/frontenjoyai-003.json"
+    },
+    {
+      "number": 4,
+      "id": "frontenjoyai-004",
+      "categories": [
+        "网页 / 业务界面",
+        "移动端应用界面"
+      ],
+      "prompt_file": "tasks/joyfrontbench-004.md",
+      "judge_file": "judge/frontenjoyai-004.json"
+    },
+    {
+      "number": 5,
+      "id": "frontenjoyai-005",
+      "categories": [
+        "SVG / 矢量图形生成",
+        "SVG 动画"
+      ],
+      "prompt_file": "tasks/joyfrontbench-005.md",
+      "judge_file": "judge/frontenjoyai-005.json"
+    },
+    {
+      "number": 6,
+      "id": "frontenjoyai-006",
+      "categories": [
+        "SVG / 矢量图形生成",
+        "静态 SVG 插画/场景"
+      ],
+      "prompt_file": "tasks/joyfrontbench-006.md",
+      "judge_file": "judge/frontenjoyai-006.json"
+    },
+    {
+      "number": 7,
+      "id": "frontenjoyai-007",
+      "categories": [
+        "应用",
+        "3D 游戏"
+      ],
+      "prompt_file": "tasks/joyfrontbench-007.md",
+      "judge_file": "judge/frontenjoyai-007.json"
+    },
+    {
+      "number": 8,
+      "id": "frontenjoyai-008",
+      "categories": [
+        "应用",
+        "复古 RPG/回合制游戏"
+      ],
+      "prompt_file": "tasks/joyfrontbench-008.md",
+      "judge_file": "judge/frontenjoyai-008.json"
+    },
+    {
+      "number": 9,
+      "id": "frontenjoyai-009",
+      "categories": [
+        "网页 / 业务界面",
+        "工作台"
+      ],
+      "prompt_file": "tasks/joyfrontbench-009.md",
+      "judge_file": "judge/frontenjoyai-009.json"
+    },
+    {
+      "number": 10,
+      "id": "frontenjoyai-010",
+      "categories": [
+        "演示 / 概念可视化",
+        "3D交互演示"
+      ],
+      "prompt_file": "tasks/joyfrontbench-010.md",
+      "judge_file": "judge/frontenjoyai-010.json"
+    },
+    {
+      "number": 11,
+      "id": "frontenjoyai-011",
+      "categories": [
+        "演示 / 概念可视化",
+        "3D交互演示"
+      ],
+      "prompt_file": "tasks/joyfrontbench-011.md",
+      "judge_file": "judge/frontenjoyai-011.json"
+    },
+    {
+      "number": 12,
+      "id": "frontenjoyai-012",
+      "categories": [
+        "演示 / 概念可视化",
+        "时序动画演示"
+      ],
+      "prompt_file": "tasks/joyfrontbench-012.md",
+      "judge_file": "judge/frontenjoyai-012.json"
+    },
+    {
+      "number": 13,
+      "id": "frontenjoyai-013",
+      "categories": [
+        "演示 / 概念可视化",
+        "3D交互演示"
+      ],
+      "prompt_file": "tasks/joyfrontbench-013.md",
+      "judge_file": "judge/frontenjoyai-013.json"
+    },
+    {
+      "number": 14,
+      "id": "frontenjoyai-014",
+      "categories": [
+        "数据可视化",
+        "博弈模拟可视化"
+      ],
+      "prompt_file": "tasks/joyfrontbench-014.md",
+      "judge_file": "judge/frontenjoyai-014.json"
+    },
+    {
+      "number": 15,
+      "id": "frontenjoyai-015",
+      "categories": [
+        "网页 / 业务界面",
+        "教育应用"
+      ],
+      "prompt_file": "tasks/joyfrontbench-015.md",
+      "judge_file": "judge/frontenjoyai-015.json"
+    },
+    {
+      "number": 16,
+      "id": "frontenjoyai-016",
+      "categories": [
+        "网页 / 业务界面",
+        "官网界面"
+      ],
+      "prompt_file": "tasks/joyfrontbench-016.md",
+      "judge_file": "judge/frontenjoyai-016.json"
+    },
+    {
+      "number": 17,
+      "id": "frontenjoyai-017",
+      "categories": [
+        "数据可视化",
+        "数据看板"
+      ],
+      "prompt_file": "tasks/joyfrontbench-017.md",
+      "judge_file": "judge/frontenjoyai-017.json"
+    },
+    {
+      "number": 18,
+      "id": "frontenjoyai-018",
+      "categories": [
+        "演示 / 概念可视化",
+        "仿真模拟（非3D）"
+      ],
+      "prompt_file": "tasks/joyfrontbench-018.md",
+      "judge_file": "judge/frontenjoyai-018.json"
+    },
+    {
+      "number": 19,
+      "id": "frontenjoyai-019",
+      "categories": [
+        "演示 / 概念可视化",
+        "3D交互演示"
+      ],
+      "prompt_file": "tasks/joyfrontbench-019.md",
+      "judge_file": "judge/frontenjoyai-019.json"
+    },
+    {
+      "number": 20,
+      "id": "frontenjoyai-020",
+      "categories": [
+        "网页 / 业务界面",
+        "移动端应用界面"
+      ],
+      "prompt_file": "tasks/joyfrontbench-020.md",
+      "judge_file": "judge/frontenjoyai-020.json"
+    },
+    {
+      "number": 21,
+      "id": "frontenjoyai-021",
+      "categories": [
+        "应用",
+        "闯关游戏"
+      ],
+      "prompt_file": "tasks/joyfrontbench-021.md",
+      "judge_file": "judge/frontenjoyai-021.json"
+    },
+    {
+      "number": 22,
+      "id": "frontenjoyai-022",
+      "categories": [
+        "网页 / 业务界面",
+        "检测系统"
+      ],
+      "prompt_file": "tasks/joyfrontbench-022.md",
+      "judge_file": "judge/frontenjoyai-022.json"
+    },
+    {
+      "number": 23,
+      "id": "frontenjoyai-023",
+      "categories": [
+        "应用",
+        "3D游戏"
+      ],
+      "prompt_file": "tasks/joyfrontbench-023.md",
+      "judge_file": "judge/frontenjoyai-023.json"
+    },
+    {
+      "number": 24,
+      "id": "frontenjoyai-024",
+      "categories": [
+        "演示 / 概念可视化",
+        "仿真模拟（非3D）"
+      ],
+      "prompt_file": "tasks/joyfrontbench-024.md",
+      "judge_file": "judge/frontenjoyai-024.json"
+    },
+    {
+      "number": 25,
+      "id": "frontenjoyai-025",
+      "categories": [
+        "应用",
+        "可交互模拟器"
+      ],
+      "prompt_file": "tasks/joyfrontbench-025.md",
+      "judge_file": "judge/frontenjoyai-025.json"
+    },
+    {
+      "number": 26,
+      "id": "frontenjoyai-026",
+      "categories": [
+        "SVG / 矢量图形生成",
+        "参数化SVG生成器"
+      ],
+      "prompt_file": "tasks/joyfrontbench-026.md",
+      "judge_file": "judge/frontenjoyai-026.json"
+    },
+    {
+      "number": 27,
+      "id": "frontenjoyai-027",
+      "categories": [
+        "应用",
+        "图像编辑应用"
+      ],
+      "prompt_file": "tasks/joyfrontbench-027.md",
+      "judge_file": "judge/frontenjoyai-027.json"
+    },
+    {
+      "number": 28,
+      "id": "frontenjoyai-028",
+      "categories": [
+        "数据可视化",
+        "数据转换工作台"
+      ],
+      "prompt_file": "tasks/joyfrontbench-028.md",
+      "judge_file": "judge/frontenjoyai-028.json"
+    },
+    {
+      "number": 29,
+      "id": "frontenjoyai-029",
+      "categories": [
+        "SVG / 矢量图形生成",
+        "静态 SVG 插画/场景"
+      ],
+      "prompt_file": "tasks/joyfrontbench-029.md",
+      "judge_file": "judge/frontenjoyai-029.json"
+    },
+    {
+      "number": 30,
+      "id": "frontenjoyai-030",
+      "categories": [
+        "网页 / 业务界面",
+        "08_证据审阅与标注工作台"
+      ],
+      "prompt_file": "tasks/joyfrontbench-030.md",
+      "judge_file": "judge/frontenjoyai-030.json"
+    }
+  ]
+}

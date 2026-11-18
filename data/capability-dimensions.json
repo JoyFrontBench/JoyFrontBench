@@ -1,0 +1,1141 @@
+{
+  "version": 2,
+  "method": {
+    "taxonomy": "8 capability dimensions (single-axis layered taxonomy)",
+    "dimensions": [
+      {
+        "name": "组件完备",
+        "description": "要求的组件、模块、信息或技术实现是否齐全"
+      },
+      {
+        "name": "表征保真",
+        "description": "静止画面是否准确还原数据、实体或真实结构"
+      },
+      {
+        "name": "视觉品质",
+        "description": "整体审美、风格、构图和视觉语言是否统一"
+      },
+      {
+        "name": "交互响应",
+        "description": "点击、拖拽、滚动或键盘操作能否响应并走通"
+      },
+      {
+        "name": "计算渲染",
+        "description": "变化后的内容、数值或画面是否算对并连贯更新"
+      },
+      {
+        "name": "规则仿真",
+        "description": "底层规则、物理机制、状态机或确定性算法是否成立"
+      },
+      {
+        "name": "状态管理",
+        "description": "跨操作、跨视图或跨刷新状态是否被记住并保持一致"
+      },
+      {
+        "name": "数据交换",
+        "description": "数据跨系统边界导入导出时内容和格式是否正确"
+      }
+    ],
+    "labeling": "single-label",
+    "labeling_unit": "task",
+    "decision_rule": "Classify by the hardest assertion in criteria. Behavioral tie-break: 规则仿真 > 状态管理 > 计算渲染 > 交互响应.",
+    "manual_review_rule": "Only use 待人工判定 when none of the eight dimensions applies."
+  },
+  "items": [
+    {
+      "question_id": "frontenjoyai-001",
+      "task_id": "1",
+      "capability_dimension": "数据交换"
+    },
+    {
+      "question_id": "frontenjoyai-001",
+      "task_id": "2",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-001",
+      "task_id": "3",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-001",
+      "task_id": "4",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-001",
+      "task_id": "5",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-001",
+      "task_id": "6",
+      "capability_dimension": "表征保真"
+    },
+    {
+      "question_id": "frontenjoyai-001",
+      "task_id": "7",
+      "capability_dimension": "表征保真"
+    },
+    {
+      "question_id": "frontenjoyai-002",
+      "task_id": "1",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-002",
+      "task_id": "2",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-002",
+      "task_id": "3",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-002",
+      "task_id": "4",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-002",
+      "task_id": "5",
+      "capability_dimension": "交互响应"
+    },
+    {
+      "question_id": "frontenjoyai-002",
+      "task_id": "6",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-002",
+      "task_id": "7",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-003",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-003",
+      "task_id": "2",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-003",
+      "task_id": "3",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-003",
+      "task_id": "4",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-003",
+      "task_id": "5",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-003",
+      "task_id": "6",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-004",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-004",
+      "task_id": "2",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-004",
+      "task_id": "3",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-004",
+      "task_id": "4",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-004",
+      "task_id": "5",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-004",
+      "task_id": "6",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-004",
+      "task_id": "7",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-004",
+      "task_id": "8",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-004",
+      "task_id": "9",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-005",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-005",
+      "task_id": "2",
+      "capability_dimension": "表征保真"
+    },
+    {
+      "question_id": "frontenjoyai-005",
+      "task_id": "3",
+      "capability_dimension": "表征保真"
+    },
+    {
+      "question_id": "frontenjoyai-005",
+      "task_id": "4",
+      "capability_dimension": "表征保真"
+    },
+    {
+      "question_id": "frontenjoyai-005",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-005",
+      "task_id": "7",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-005",
+      "task_id": "8",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-006",
+      "task_id": "1",
+      "capability_dimension": "表征保真"
+    },
+    {
+      "question_id": "frontenjoyai-006",
+      "task_id": "2",
+      "capability_dimension": "表征保真"
+    },
+    {
+      "question_id": "frontenjoyai-006",
+      "task_id": "3",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-006",
+      "task_id": "4",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-006",
+      "task_id": "5",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-007",
+      "task_id": "1",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-007",
+      "task_id": "2",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-007",
+      "task_id": "3",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-007",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-007",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-007",
+      "task_id": "6",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-007",
+      "task_id": "7",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-007",
+      "task_id": "8",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-008",
+      "task_id": "1",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-008",
+      "task_id": "2",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-008",
+      "task_id": "3",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-008",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-008",
+      "task_id": "5",
+      "capability_dimension": "交互响应"
+    },
+    {
+      "question_id": "frontenjoyai-008",
+      "task_id": "6",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-008",
+      "task_id": "7",
+      "capability_dimension": "数据交换"
+    },
+    {
+      "question_id": "frontenjoyai-008",
+      "task_id": "8",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-009",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-009",
+      "task_id": "2",
+      "capability_dimension": "交互响应"
+    },
+    {
+      "question_id": "frontenjoyai-009",
+      "task_id": "3",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-009",
+      "task_id": "4",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-009",
+      "task_id": "5",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-010",
+      "task_id": "1",
+      "capability_dimension": "交互响应"
+    },
+    {
+      "question_id": "frontenjoyai-010",
+      "task_id": "2",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-010",
+      "task_id": "3",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-010",
+      "task_id": "4",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-011",
+      "task_id": "1",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-011",
+      "task_id": "2",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-011",
+      "task_id": "3",
+      "capability_dimension": "表征保真"
+    },
+    {
+      "question_id": "frontenjoyai-011",
+      "task_id": "4",
+      "capability_dimension": "交互响应"
+    },
+    {
+      "question_id": "frontenjoyai-011",
+      "task_id": "5",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-011",
+      "task_id": "6",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-011",
+      "task_id": "7",
+      "capability_dimension": "交互响应"
+    },
+    {
+      "question_id": "frontenjoyai-011",
+      "task_id": "8",
+      "capability_dimension": "交互响应"
+    },
+    {
+      "question_id": "frontenjoyai-012",
+      "task_id": "1",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-012",
+      "task_id": "2",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-012",
+      "task_id": "3",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-012",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-012",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-012",
+      "task_id": "6",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-012",
+      "task_id": "7",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-012",
+      "task_id": "8",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-012",
+      "task_id": "9",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-013",
+      "task_id": "1",
+      "capability_dimension": "表征保真"
+    },
+    {
+      "question_id": "frontenjoyai-013",
+      "task_id": "2",
+      "capability_dimension": "表征保真"
+    },
+    {
+      "question_id": "frontenjoyai-013",
+      "task_id": "3",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-013",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-013",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-013",
+      "task_id": "6",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-013",
+      "task_id": "7",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-014",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-014",
+      "task_id": "2",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-014",
+      "task_id": "3",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-014",
+      "task_id": "4",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-014",
+      "task_id": "5",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-014",
+      "task_id": "6",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-014",
+      "task_id": "7",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-014",
+      "task_id": "8",
+      "capability_dimension": "数据交换"
+    },
+    {
+      "question_id": "frontenjoyai-014",
+      "task_id": "9",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-014",
+      "task_id": "10",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-015",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-015",
+      "task_id": "2",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-015",
+      "task_id": "3",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-015",
+      "task_id": "4",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-015",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-015",
+      "task_id": "6",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-015",
+      "task_id": "7",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-015",
+      "task_id": "8",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-016",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-016",
+      "task_id": "2",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-016",
+      "task_id": "3",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-016",
+      "task_id": "4",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-016",
+      "task_id": "5",
+      "capability_dimension": "交互响应"
+    },
+    {
+      "question_id": "frontenjoyai-016",
+      "task_id": "6",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-017",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-017",
+      "task_id": "2",
+      "capability_dimension": "数据交换"
+    },
+    {
+      "question_id": "frontenjoyai-017",
+      "task_id": "3",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-017",
+      "task_id": "4",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-017",
+      "task_id": "5",
+      "capability_dimension": "数据交换"
+    },
+    {
+      "question_id": "frontenjoyai-017",
+      "task_id": "6",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-018",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-018",
+      "task_id": "2",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-018",
+      "task_id": "3",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-018",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-018",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-018",
+      "task_id": "6",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-018",
+      "task_id": "7",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-018",
+      "task_id": "8",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-018",
+      "task_id": "9",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-019",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-019",
+      "task_id": "2",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-019",
+      "task_id": "3",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-019",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-019",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-019",
+      "task_id": "6",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-019",
+      "task_id": "7",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-019",
+      "task_id": "8",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-019",
+      "task_id": "9",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-020",
+      "task_id": "1",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-020",
+      "task_id": "2",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-020",
+      "task_id": "3",
+      "capability_dimension": "交互响应"
+    },
+    {
+      "question_id": "frontenjoyai-020",
+      "task_id": "4",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-020",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-020",
+      "task_id": "6",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-020",
+      "task_id": "7",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-021",
+      "task_id": "1",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-021",
+      "task_id": "2",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-021",
+      "task_id": "3",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-021",
+      "task_id": "4",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-021",
+      "task_id": "5",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-021",
+      "task_id": "6",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-021",
+      "task_id": "7",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-021",
+      "task_id": "8",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-022",
+      "task_id": "1",
+      "capability_dimension": "表征保真"
+    },
+    {
+      "question_id": "frontenjoyai-022",
+      "task_id": "2",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-022",
+      "task_id": "3",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-022",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-022",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-022",
+      "task_id": "6",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-022",
+      "task_id": "7",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-022",
+      "task_id": "8",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-023",
+      "task_id": "1",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-023",
+      "task_id": "2",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-023",
+      "task_id": "3",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-023",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-023",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-023",
+      "task_id": "6",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-023",
+      "task_id": "8",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-024",
+      "task_id": "1",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-024",
+      "task_id": "2",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-024",
+      "task_id": "3",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-024",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-024",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-024",
+      "task_id": "6",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-025",
+      "task_id": "1",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-025",
+      "task_id": "2",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-025",
+      "task_id": "3",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-025",
+      "task_id": "4",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-025",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-025",
+      "task_id": "6",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-026",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-026",
+      "task_id": "2",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-026",
+      "task_id": "3",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-026",
+      "task_id": "4",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-026",
+      "task_id": "5",
+      "capability_dimension": "计算渲染"
+    },
+    {
+      "question_id": "frontenjoyai-026",
+      "task_id": "6",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-026",
+      "task_id": "7",
+      "capability_dimension": "数据交换"
+    },
+    {
+      "question_id": "frontenjoyai-026",
+      "task_id": "8",
+      "capability_dimension": "交互响应"
+    },
+    {
+      "question_id": "frontenjoyai-026",
+      "task_id": "9",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-027",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-027",
+      "task_id": "2",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-027",
+      "task_id": "3",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-027",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-027",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-027",
+      "task_id": "6",
+      "capability_dimension": "交互响应"
+    },
+    {
+      "question_id": "frontenjoyai-027",
+      "task_id": "7",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-027",
+      "task_id": "8",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-027",
+      "task_id": "9",
+      "capability_dimension": "数据交换"
+    },
+    {
+      "question_id": "frontenjoyai-028",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-028",
+      "task_id": "2",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-028",
+      "task_id": "3",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-028",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-028",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-028",
+      "task_id": "6",
+      "capability_dimension": "数据交换"
+    },
+    {
+      "question_id": "frontenjoyai-028",
+      "task_id": "7",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-029",
+      "task_id": "1",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-029",
+      "task_id": "2",
+      "capability_dimension": "表征保真"
+    },
+    {
+      "question_id": "frontenjoyai-029",
+      "task_id": "3",
+      "capability_dimension": "组件完备"
+    },
+    {
+      "question_id": "frontenjoyai-029",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-029",
+      "task_id": "5",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-029",
+      "task_id": "6",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-030",
+      "task_id": "1",
+      "capability_dimension": "视觉品质"
+    },
+    {
+      "question_id": "frontenjoyai-030",
+      "task_id": "2",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-030",
+      "task_id": "3",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-030",
+      "task_id": "4",
+      "capability_dimension": "规则仿真"
+    },
+    {
+      "question_id": "frontenjoyai-030",
+      "task_id": "5",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-030",
+      "task_id": "6",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-030",
+      "task_id": "7",
+      "capability_dimension": "状态管理"
+    },
+    {
+      "question_id": "frontenjoyai-030",
+      "task_id": "8",
+      "capability_dimension": "组件完备"
+    }
+  ]
+}

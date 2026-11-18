@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "front-openhands-harness"
+version = "0.1.0"
+description = "OpenHands harness for the JoyFrontBench public 30-problem set."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "front-generation-common==0.1.0",
+  "openhands-sdk==1.41.0",
+  "openhands-tools==1.41.0",
+  "pydantic>=2.12,<3",
+]
+
+[project.scripts]
+front-openhands = "front_openhands.cli:main"
+
+[tool.uv.sources]
+front-generation-common = { path = "../common" }
+
+[dependency-groups]
+dev = [
+  "jsonschema>=4.25,<5",
+  "pytest>=9,<10",
+  "ruff>=0.12,<1",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

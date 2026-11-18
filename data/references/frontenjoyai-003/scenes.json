@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "protocol": "frozen-visual",
+  "question_id": "frontenjoyai-003",
+  "task_ids": [
+    "6"
+  ],
+  "capture": {
+    "browser": "Google Chrome",
+    "locale": "zh-CN",
+    "timezone": "UTC"
+  },
+  "evidence_scope": "criterion_ids identify relevant comparison views, not proof that a criterion passes. PNGs are unretouched browser captures. Finite samples cannot prove unseen states, source facts or continuous behavior. Keep the original rubric; use needs_review if missing evidence determines the GSB decision.",
+  "comparison_limits": [
+    {
+      "criterion_ids": [
+        "6.5",
+        "6.6"
+      ],
+      "not_established": "Only the recorded desktop and 390px mobile states are observed; unseen resolutions and complete usability are not established by pixels."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "initial",
+      "title": "Initial rendered view",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /."
+      ],
+      "frames": [
+        {
+          "path": "images/initial-01.png",
+          "elapsed_ms": 2434
+        }
+      ],
+      "criterion_ids": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ]
+    },
+    {
+      "id": "desktop-gallery",
+      "title": "Desktop product page — gallery",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Scroll to the gallery section."
+      ],
+      "frames": [
+        {
+          "path": "images/desktop-gallery-01.png",
+          "elapsed_ms": 3926
+        }
+      ],
+      "criterion_ids": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ]
+    },
+    {
+      "id": "desktop-specs",
+      "title": "Desktop product page — specs",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Scroll to the gallery section.",
+        "Scroll to the interactive section.",
+        "Scroll to the specs section."
+      ],
+      "frames": [
+        {
+          "path": "images/desktop-specs-01.png",
+          "elapsed_ms": 6930
+        }
+      ],
+      "criterion_ids": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ]
+    },
+    {
+      "id": "mobile-hero",
+      "title": "Mobile hero layout",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /."
+      ],
+      "frames": [
+        {
+          "path": "images/mobile-hero-01.png",
+          "elapsed_ms": 2402
+        }
+      ],
+      "criterion_ids": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.6"
+      ]
+    },
+    {
+      "id": "mobile-specs",
+      "title": "Mobile product page — specs",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Scroll to the gallery section on mobile.",
+        "Scroll to the specs section on mobile."
+      ],
+      "frames": [
+        {
+          "path": "images/mobile-specs-01.png",
+          "elapsed_ms": 4629
+        }
+      ],
+      "criterion_ids": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.6"
+      ]
+    }
+  ]
+}

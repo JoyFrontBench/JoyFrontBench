@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-009",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "主页面组件完整性",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "页面为左侧导航栏、右侧会话区的双栏布局。"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "左侧显示营销百宝箱标识。"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "“智能助手”默认选中。"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "“调度任务”置灰并显示待开放状态。"
+        },
+        {
+          "criterion_id": "1.5",
+          "text": "历史会话区域存在占位，但没有伪造可用的历史会话功能。"
+        },
+        {
+          "criterion_id": "1.6",
+          "text": "左侧栏可以展开和收起。"
+        },
+        {
+          "criterion_id": "1.7",
+          "text": "左侧栏收起后，右侧区域自适应扩展。"
+        },
+        {
+          "criterion_id": "1.8",
+          "text": "顶部展示“促销查询”“优惠券查询”“价格巡检”。"
+        },
+        {
+          "criterion_id": "1.9",
+          "text": "只有“促销查询”处于可用状态。"
+        },
+        {
+          "criterion_id": "1.10",
+          "text": "页面明确文字提示当前仅支持促销查询。"
+        }
+      ]
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "未开放功能交互提醒",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "点击“优惠券查询”会在会话区展示“功能待开放”提示。"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "点击“价格巡检”会在会话区展示“功能待开放”提示。"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "点击未开放能力不会发起促销查询，也不会出现可提交表单。"
+        }
+      ]
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "流式交互",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "点击查询后，不是一次性立即展示全部结果。"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "页面先展示任务开始或参数校验状态。"
+        },
+        {
+          "criterion_id": "3.3",
+          "text": "页面展示“正在查询 SKU 全量促销信息”。"
+        },
+        {
+          "criterion_id": "3.4",
+          "text": "全量促销结果先于实时价格结果出现。"
+        },
+        {
+          "criterion_id": "3.5",
+          "text": "页面展示“正在查询用户实时价格与命中促销”。"
+        },
+        {
+          "criterion_id": "3.6",
+          "text": "最后展示汇总和完成状态。"
+        },
+        {
+          "criterion_id": "3.7",
+          "text": "各阶段之间存在可感知但不过长的模拟延迟。"
+        },
+        {
+          "criterion_id": "3.8",
+          "text": "每次查询形成独立的一组会话内容。"
+        }
+      ]
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "多轮会话执行",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "参数：\n- 站点：英国 1400\n- SKU：100001\n- PIN：test_user_01\n检查：\n- [ ] 返回 2 条全量促销。\n- [ ] 返回 2 条命中促销。\n- [ ] 原价为 129.99 GBP。\n- [ ] 实时价格为 99.99 GBP。\n- [ ] 总优惠金额为 30 GBP。\n- [ ] 查询最终进入完成状态。"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "参数：\n- 站点：英国 1400\n- SKU：100001\n- PIN：partial_error_user\n检查：\n- [ ] 全量促销成功展示。\n- [ ] 实时价格阶段展示部分失败。\n- [ ] 全量促销结果被保留。\n- [ ] 页面没有把整个查询组清空。"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "多轮对话的情况下历史会话记录仍保存，可以滚动查看"
+        }
+      ]
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pairwise_gsb",
+      "task": "界面简洁、专业、符合企业内部工具风格",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "主界面各部分均无遮挡，完整展示。"
+        },
+        {
+          "criterion_id": "5.2",
+          "text": "企业级视觉调性:整体简洁、专业，符合企业内部工具气质，无廉价感/娱乐化"
+        },
+        {
+          "criterion_id": "5.3",
+          "text": "未用大量渐变、荧光色或过度动画来掩盖功能缺失"
+        },
+        {
+          "criterion_id": "5.4",
+          "text": "实时价格被恰当强调，但无夸张动画"
+        }
+      ]
+    }
+  ]
+}

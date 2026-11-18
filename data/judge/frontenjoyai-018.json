@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-018",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "实验台结构与可测试仿真核心——交付 Vite + React + TypeScript 多文件工程，页面是可操作实验台（容器/液体选择、倾角与流速控制、可拖动接收杯、Start/Pause/Resume/Reset、慢动作、统计报告），并把液面几何、出水判定、水流轨迹、命中、体积守恒、统计等核心逻辑拆到可单测的 simulation/domain 模块。",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "工程含 package.json、index.html、src/main.tsx、src/App.tsx、README.md，scripts 含 dev/build/test/typecheck"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "页面是交互实验台而非静态倒水图或纯参数表"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "核心物理逻辑在 simulation/domain 纯函数中、可被测试 import"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "不使用 dangerouslySetInnerHTML、不把页面写成字符串模板"
+        },
+        {
+          "criterion_id": "1.5",
+          "text": "npm run build、npm run test、npm run typecheck 通过。"
+        }
+      ]
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "容器/液体选择与倾角控制交互——支持至少 4 种容器与 3 种液体，用户可切换容器/液体、通过拖动容器或滑杆调整倾角、拖动接收杯位置，各控件状态与画面同步。",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "4 种容器、3 种液体均可选且画面/参数随之变化"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "倾角可通过拖动或滑杆调整，容器随倾角旋转"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "接收杯可拖动且位置实时反映在画面"
+        },
+        {
+          "criterion_id": "2.4",
+          "text": "Start/Pause/Resume/Reset/慢动作控件可用。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：加载页面，确认可见容器选择、液体选择、倾角控制、接收杯与实验控制按钮。",
+          "**验证点 1（容器切换）**：依次切换 4 种容器 → 断言容器形状/容量或倒倾口位置随之变化。",
+          "**验证点 2（液体切换）**：切换水/蜂蜜/糖浆 → 断言液体颜色或标注的粘度随之变化。",
+          "**验证点 3（倾角控制）**：拖动倾角滑杆或旋转容器 → 断言容器倾斜角度实时变化。",
+          "**验证点 4（接收杯拖动）**：拖动接收杯 → 断言其位置实时更新。"
+        ]
+      }
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "液面随重力保持水平——容器倾斜时，容器内液体自由表面必须始终保持水平（相对屏幕/重力），而不是随容器一起旋转；倾斜时液面与容器壁的相交形状会相应变化。",
+      "instructions": "（判断依据：看画面 + 读 simulation 源码）：1. 倾斜容器后，液面在屏幕上仍呈水平",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "液面不随容器旋转成斜面"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "液面几何由剩余量与倾角共同决定，可在源码中找到对应计算而非固定矩形。高频失败反例：把液体画成子矩形跟随容器 rotate（本题原版即此错误）。评分锚点：液面严格水平且随倾角/余量变化=1；液面水平但形状不随倾角变化=0.5；液面随容器旋转=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：选择茶壶+水，容器接近满，未开始倾倒。",
+          "**验证点 1（静态倾斜）**：将倾角调到约 30° → 断言容器内液面在屏幕上仍水平，未跟随容器倾斜成斜面。",
+          "**验证点 2（大角度）**：将倾角调到约 60° → 断言液面依旧水平，且液面与容器壁的交线随角度变化。"
+        ]
+      }
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "几何出水判定——是否出水由\"当前倾角下水平液面是否越过容器倒倾口\"决定，而非固定角度阈值；容器越满越小倾角就出水，越空需越大倾角，倒的过程中若倾角不变出水会逐渐变慢直至停止，需继续加大倾角维持出水。",
+      "instructions": "（判断依据：交互观察 + 读源码 + 测试）：1. 满容器小倾角即可出水",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "空/少量容器同样小倾角不出水，需更大倾角"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "恒定倾角持续倒液时，流速随剩余量下降而下降直至停流"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "出水判定基于液面-倒倾口几何关系，源码中非 `angle >= 固定阈值`。高频失败反例：固定 pourThreshold 常量、出水只看角度不看余量。评分锚点：三条动态关系都成立=1；仅部分成立=0.5；固定角度阈值=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：选择茶壶+水。",
+          "**验证点 1（满时易出水）**：容器满，设一个较小倾角 → 断言开始倒后有水流出。",
+          "**验证点 2（空时需大角）**：Reset 后把容器倒到接近空（或选低余量），用同一较小倾角 → 断言不出水或流速极低；加大倾角 → 断言恢复出水。",
+          "**验证点 3（过程衰减）**：满容器用恒定中等倾角持续倒 → 断言流速随剩余量减少而下降、最终趋于停流；此时加大倾角 → 断言重新出水。"
+        ]
+      }
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pointwise",
+      "task": "抛物线水流轨迹与实时落点——液体离开倒倾口后按抛物线下落，落点由离口速度与重力决定；改变倾角、倒倾口高度或流速时，抛物线形状与落点连续变化，不能是写死曲线或线性落点公式。",
+      "instructions": "（判断依据：看画面 + 读源码 + 测试）：1. 水流呈抛物线而非直线或固定贝塞尔",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "增大流速/倾角落点变远、变化连续"
+        },
+        {
+          "criterion_id": "5.2",
+          "text": "落点计算体现重力与初速关系，源码中非 `落点 = 角度 × 常数`。高频失败反例：固定 `<path d=...>` 贝塞尔、`landingX = 120 + angle*2.35` 线性式。评分锚点：抛物线且落点随参数物理性连续变化=1；有弧线但落点线性/参数不敏感=0.5；固定曲线=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：选择茶壶+水，开始倒液使水流可见。",
+          "**验证点 1（抛物线形状）**：观察水流 → 断言呈抛物线弧线下落，而非直线段或不动的固定曲线。",
+          "**验证点 2（流速改落点）**：增大基础流速 → 断言落点向远处连续移动；减小 → 断言落点回移。",
+          "**验证点 3（倾角改落点）**：改变倾角 → 断言抛物线形状与落点随之连续变化。"
+        ]
+      }
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pointwise",
+      "task": "粘度影响水流形态与轨迹——不同液体粘度真实改变流速、水流粗细、抛物线远近与连续性；低粘度（水）细、快、抛得远，高粘度（蜂蜜/糖浆）粗、慢、近垂直，极低流速时断续成滴而非连续流。",
+      "instructions": "（判断依据：看画面 + 读源码 + 测试）：1. 相同容器/倾角下，水的流速与落点距离明显大于蜂蜜",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "高粘度水流更粗、更接近垂直"
+        },
+        {
+          "criterion_id": "6.2",
+          "text": "极低流速下高粘度可断续成滴。高频失败反例：粘度只改颜色不改物理、三种液体轨迹一致。评分锚点：流速+形态+断流三方面差异都体现=1；仅流速有差异=0.5；粘度无物理影响=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：茶壶，固定一个中等倾角与流速。",
+          "**验证点 1（水 vs 蜂蜜落点）**：选水开始倒，记录落点/流速；Reset 后同参数选蜂蜜 → 断言蜂蜜流速更低、落点更近、水流更接近垂直。",
+          "**验证点 2（断流成滴）**：蜂蜜/糖浆 + 很低倾角（刚过出水条件）→ 断言水流断续成滴而非连续水线。"
+        ]
+      }
+    },
+    {
+      "task_id": "7",
+      "judge_mode": "pointwise",
+      "task": "命中、溢出、台面 puddle 与确定性飞溅——落在接收杯口内为命中并累积（接收杯液面水平），接收杯满后 overflow，未命中或溢出的液体在台面形成随累计量增大的 puddle；冲击接收杯液面或台面时产生确定性飞溅（相同参数与帧序列产生相同飞溅）。",
+      "instructions": "（判断依据：交互观察 + 读源码 + 测试）：1. 落点在杯口内命中、杯内液面水平累积",
+      "criteria": [
+        {
+          "criterion_id": "7.1",
+          "text": "拖开接收杯后未命中并在台面形成 puddle"
+        },
+        {
+          "criterion_id": "7.2",
+          "text": "接收杯满后继续命中产生 overflow"
+        },
+        {
+          "criterion_id": "7.3",
+          "text": "puddle 随累计溢出量增大"
+        },
+        {
+          "criterion_id": "7.4",
+          "text": "飞溅由确定性规则生成、可复现。高频失败反例：飞溅用 Math.random、溢出不形成 puddle、杯内液面倾斜。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：茶壶+水，接收杯对准落点。",
+          "**验证点 1（命中累积）**：开始倒 → 断言接收杯液面上升且保持水平，接住量统计增加。",
+          "**验证点 2（未命中 puddle）**：将接收杯拖离落点继续倒 → 断言出现未命中 spill 记录，台面出现 puddle 且随时间增大。",
+          "**验证点 3（overflow）**：接收杯对准落点倒到装满后继续倒 → 断言产生 overflow 记录、溢出量增加。",
+          "**验证点 4（飞溅可复现）**：记录一次固定参数运行的飞溅表现；Reset 后同参数同慢动作再运行 → 断言飞溅与命中/溢出结果一致（确定性）。"
+        ]
+      }
+    },
+    {
+      "task_id": "8",
+      "judge_mode": "pointwise",
+      "task": "体积守恒、稳定性与 RAF 生命周期——倒出量 = 接住量 + 溢出量 + 台面 spill + 容器残余误差（误差接近 0，剩余量不为负）；pause 不推进、reset 全清、快速 Start/Pause/Reset 不产生多个 RAF、参数非法被 clamp、无 NaN/落点跳变。",
+      "criteria": [
+        {
+          "criterion_id": "8.1",
+          "text": "任意时刻体积守恒误差接近 0、剩余量非负"
+        },
+        {
+          "criterion_id": "8.2",
+          "text": "pause 后帧不推进、resume 继续"
+        },
+        {
+          "criterion_id": "8.3",
+          "text": "reset 清空粒子/容器液面/接收杯液面/统计/溢出/puddle/运行状态"
+        },
+        {
+          "criterion_id": "8.4",
+          "text": "快速 Start/Pause/Reset 不重复创建 RAF/timer"
+        },
+        {
+          "criterion_id": "8.5",
+          "text": "非法参数被 clamp，无 NaN、负体积、无限流速或落点跳变。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：茶壶+水，完成一次部分倾倒。",
+          "**验证点 1（体积守恒）**：读取报告中倒出/接住/溢出/spill/残余与体积误差 → 断言误差接近 0，剩余量非负。",
+          "**验证点 2（pause）**：倒液中点击 Pause → 断言画面与统计停止推进；Resume → 断言从暂停处继续。",
+          "**验证点 3（reset 全清）**：点击 Reset → 断言粒子、容器与接收杯液面、统计、溢出、puddle 全部清空并回到初始参数。",
+          "**验证点 4（RAF 稳定）**：快速连续点击 Start/Pause/Reset 多次 → 断言无卡死、无加速（多 RAF 叠加）、控制台无报错。"
+        ]
+      }
+    },
+    {
+      "task_id": "9",
+      "judge_mode": "pointwise",
+      "task": "preset 对比、响应式与 README——支持保存一个实验 preset 并对比两个 preset 的倾倒效率（数据来自真实 simulation）；360px 与桌面宽屏均可完成实验；reduced-motion 下降级为离散帧但状态仍正确；README 说明齐全。",
+      "criteria": [
+        {
+          "criterion_id": "9.1",
+          "text": "preset 可保存、两 preset 效率对比来自真实运行数据而非写死"
+        },
+        {
+          "criterion_id": "9.2",
+          "text": "360px 下可选容器、倾倒、移动接收杯、看统计，无关键错位"
+        },
+        {
+          "criterion_id": "9.3",
+          "text": "prefers-reduced-motion 下减少高频动画但液面/出水/统计仍正确"
+        },
+        {
+          "criterion_id": "9.4",
+          "text": "README 说明运行/构建/测试/模块/数据模型/物理模型（液面几何、出水判定、抛物线、粘度、飞溅）/reset/已知限制。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：完成一次倾倒。",
+          "**验证点 1（preset 对比）**：保存当前 preset；改参数再倒一次并保存/对比 → 断言两 preset 效率对比与各自运行结果一致。",
+          "**验证点 2（移动端）**：将 viewport 设为 360px → 断言可完成容器选择、倾倒、拖动接收杯与查看统计，无关键内容溢出。",
+          "**验证点 3（reduced motion）**：启用 prefers-reduced-motion 重新加载并倒液 → 断言动画降级但液面、出水、统计仍正确更新。",
+          "**静态验证**：运行 npm run test 与 npm run typecheck；读 README 核对说明与物理模型描述是否齐全。"
+        ]
+      }
+    }
+  ]
+}

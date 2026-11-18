@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "protocol": "frozen-visual",
+  "question_id": "frontenjoyai-026",
+  "task_ids": [
+    "9"
+  ],
+  "capture": {
+    "browser": "Google Chrome",
+    "locale": "zh-CN",
+    "timezone": "UTC"
+  },
+  "evidence_scope": "criterion_ids identify relevant comparison views, not proof that a criterion passes. PNGs are unretouched browser captures. Finite samples cannot prove unseen states, source facts or continuous behavior. Keep the original rubric; use needs_review if missing evidence determines the GSB decision.",
+  "comparison_limits": [],
+  "scenes": [
+    {
+      "id": "poster-geometric",
+      "title": "Poster composition — geometric",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Use the built-in geometric poster theme with the default text and seed."
+      ],
+      "frames": [
+        {
+          "path": "images/poster-geometric-01.png",
+          "elapsed_ms": 3009
+        }
+      ],
+      "criterion_ids": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ]
+    },
+    {
+      "id": "poster-swiss",
+      "title": "Poster composition — swiss",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Use the built-in geometric poster theme with the default text and seed.",
+        "Use the built-in swiss poster theme with the default text and seed."
+      ],
+      "frames": [
+        {
+          "path": "images/poster-swiss-01.png",
+          "elapsed_ms": 3540
+        }
+      ],
+      "criterion_ids": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ]
+    },
+    {
+      "id": "poster-night",
+      "title": "Poster composition — night",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": true,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Use the built-in geometric poster theme with the default text and seed.",
+        "Use the built-in swiss poster theme with the default text and seed.",
+        "Use the built-in night poster theme with the default text and seed."
+      ],
+      "frames": [
+        {
+          "path": "images/poster-night-01.png",
+          "elapsed_ms": 4118
+        }
+      ],
+      "criterion_ids": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ]
+    }
+  ]
+}

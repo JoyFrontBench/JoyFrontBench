@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/front/run-metadata.schema.json",
+  "title": "Front OpenHands Run Metadata",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "status",
+    "engine",
+    "model",
+    "task",
+    "run"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "status": {
+      "type": "string"
+    },
+    "engine": {
+      "type": "object",
+      "required": [
+        "name",
+        "version",
+        "toolsVersion"
+      ]
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "alias",
+        "model",
+        "openhandsModel",
+        "enabled",
+        "credentialsAvailable",
+        "authType",
+        "wireApi",
+        "wirePath",
+        "contextTokens",
+        "request",
+        "reasoningEffort"
+      ]
+    },
+    "task": {
+      "type": "object",
+      "required": [
+        "id",
+        "path"
+      ]
+    },
+    "run": {
+      "type": "object",
+      "required": [
+        "id",
+        "createdAt",
+        "runDir",
+        "workspace",
+        "maxIterations"
+      ]
+    },
+    "runtime": {
+      "type": "object",
+      "required": [
+        "playwrightVersion",
+        "playwrightBrowsersPath"
+      ],
+      "properties": {
+        "playwrightVersion": {
+          "type": "string"
+        },
+        "playwrightBrowsersPath": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-026",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "单文件离线 SVG 海报工具与结构边界——成品应是可离线运行的参数化设计工具，海报视觉与资源全部由内联 SVG 生成且结构可维护。",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "最终交付为一个可直接打开的 HTML 文件，离线运行时不依赖后端、构建工具、远程字体、外部图片、外部 SVG、在线纹理、3D 模型、CDN 或网络 API"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "海报主视觉、原创活动图形标、二维码占位、纹理、装饰和文字均由内联 SVG 原生元素生成，不使用预生成位图或外部图片冒充矢量设计"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "SVG 合理使用 path、rect、circle、line/polyline、polygon、text、gradient、pattern、clipPath、mask、filter、g 分组和 transform 中的多类能力，且结构不是一条不可读的超长 path"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "SVG 至少包含 background、visual、title、event-info、ticket、qr、decorations、safe-area/grid 等清晰分组，ID 唯一，页面运行过程中控制台无阻断性异常。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：阻断外网，以本地文件 URL 或本地静态服务器打开唯一 HTML，记录网络面板、控制台、DOM 和源码。",
+          "**验证点 1（离线边界）**：刷新并操作主要控件 → 断言海报生成器完整可用且没有业务资源网络请求；源码不存在远程字体、图片、API 或外部 SVG 依赖。",
+          "**验证点 2（内联矢量）**：检查海报主视觉、Logo、二维码占位和纹理节点 → 断言它们来自内联 SVG 图元，而不是 image/base64 位图或外链资源。",
+          "**验证点 3（SVG 能力与可读性）**：展开 SVG DOM 和导出的 SVG → 断言使用多种 SVG 元素和 defs 能力，结构可理解，没有把整张海报压成单个不可维护路径。",
+          "**验证点 4（分组与稳定）**：检查 g 分组、资源 ID 和控制台 → 断言主要分组齐全，ID 不冲突，切换参数和导出过程中无阻断性异常。"
+        ]
+      }
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "活动信息完整性与文本编辑闭环——每个主题和尺寸下都必须保留 NEON HARBOR 2027 的关键信息，并能应对用户修改与长文本。",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "每个尺寸版本都包含并保持可读：英文标题、中文副标题、日期、地点、标语、内容列表、开放时间、票务信息、原创活动图形标、主视觉、SVG 二维码占位图形和入口文字"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "控制面板允许编辑英文标题、中文副标题、日期、地点、标语和票价等文本，修改后 SVG 预览立即更新"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "切换主题或尺寸时关键信息不得丢失，二维码和票务入口仍可见（各尺寸的版式重排和 viewBox 比例正确性由评测项 5 判定，本项只判定信息内容完整）"
+        },
+        {
+          "criterion_id": "2.4",
+          "text": "长标题或长地点输入不会直接溢出 viewBox 或遮挡全部信息，应通过换行、缩小字号或明确溢出提示处理。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：在默认参数下打开海报预览，准备切换全部主题和尺寸。",
+          "**验证点 1（信息齐全）**：逐一检查默认海报文字、Logo、主视觉和二维码占位 → 断言固定活动信息全部出现且可读。",
+          "**验证点 2（文本编辑）**：修改标题、副标题、日期、地点、标语和票价 → 断言 SVG 文字即时同步，导出摘要中的参数也随之更新。",
+          "**验证点 3（切换不丢失）**：遍历三种主题和四种尺寸 → 断言每个组合下关键信息、二维码和票务入口仍在 viewBox 内可见。",
+          "**验证点 4（长文本处理）**：输入明显更长的英文标题和地点 → 断言系统换行、缩放或提示溢出，不能出现文字整段超出画布或遮挡全部内容。"
+        ]
+      }
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "生成式主视觉语义与确定性——“港口声波 + 城市网格 + 像素呼吸”应是有规则、可控、可复现的海报视觉焦点。",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "主视觉原创且至少组合海浪/声波、城市建筑网格、港口坐标/航线、发光像素节点、抽象 N/H、日夜节奏中的三种语义，不能只是随机圆形或模糊渐变光球"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "density 和 seed 能控制主视觉复杂度和生成变化，任何密度下图形不得完全遮挡标题、日期、票务或二维码"
+        },
+        {
+          "criterion_id": "3.3",
+          "text": "生成逻辑使用确定性伪随机或规则函数，不直接用不可复现的 `Math.random()` 驱动最终布局。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：选择一个主题和尺寸，记录当前 seed、density 与 SVG 源码片段。",
+          "**验证点 1（视觉语义）**：观察主视觉并阅读参数摘要/结构分组 → 断言可辨认至少三种题面语义，且主视觉是海报焦点而非随机装饰。",
+          "**验证点 2（密度可控）**：将 density 调到低、中、高多个值 → 断言节点、波形、网格或航线复杂度真实变化，同时文字和二维码仍可读。",
+          "**验证点 3（确定性源码）**：检查生成函数和随机调用 → 断言最终布局来自 seed 驱动的确定性算法，未直接用裸 `Math.random()` 造成不可复现结果。"
+        ]
+      }
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "三种主题的真实重排与视觉差异——Geometric Pulse、Swiss Grid 和 Night Signal 应在构图、层级、配色、装饰策略上明显不同，而不是只换背景色。",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "Geometric Pulse 体现大型几何主视觉、强对角线或分区、标题尺度对比和数字艺术/音乐节气质"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "Swiss Grid 体现明确列网格和基线、左对齐或网格化排版、克制配色和清晰信息层级"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "Night Signal 是深色夜间版本，使用节点、声波和港口信号语言，小字对比清晰，辉光不过度"
+        },
+        {
+          "criterion_id": "4.4",
+          "text": "切换主题会同步改变构图、字体尺度、配色、主视觉参数和装饰方式，同一海报主色不超过 4 种且文字与背景对比清晰。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：固定相同尺寸、文本、seed 和 density，准备依次切换三个主题并截图。",
+          "**验证点 1（Geometric Pulse）**：选择 Geometric Pulse → 断言存在大型几何焦点、明显分区/对角线和强标题层级，不像普通表单预览。",
+          "**验证点 2（Swiss Grid）**：选择 Swiss Grid → 断言列网格、基线或左对齐关系明确，信息层级克制清晰，与 Geometric Pulse 构图不同。",
+          "**验证点 3（Night Signal）**：选择 Night Signal → 断言深色夜间氛围下节点/声波/信号元素可辨，小字和二维码不过暗，辉光不模糊正文。",
+          "**验证点 4（非只换色）**：对比三张截图和 SVG 分组参数 → 断言布局、字号比例、装饰位置和主视觉策略均变化，且色彩数量与对比满足要求。"
+        ]
+      }
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pointwise",
+      "task": "四种输出尺寸与真正重排——A3 Portrait、Social Post、Story 和 Landscape Screen 应拥有匹配比例的 viewBox 和适合场景的排版，而不是裁切同一竖版。",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "至少支持 A3 Portrait、Social Post、Story、Landscape Screen 四种规格，SVG viewBox 与当前规格比例一致，并在尺寸信息区显示当前规格、viewBox、导出比例和安全区提示"
+        },
+        {
+          "criterion_id": "5.2",
+          "text": "切换尺寸后元素真正重排，不能只整体缩放或裁切同一竖版设计"
+        },
+        {
+          "criterion_id": "5.3",
+          "text": "A3 保留打印安全区，Story 保留顶部/底部安全区，Landscape 信息与主视觉左右分置或等效横向结构，Social Post 缩略图下标题仍醒目"
+        },
+        {
+          "criterion_id": "5.4",
+          "text": "四种尺寸重排后文字不溢出 viewBox，二维码和票务信息始终在画布内可见（编辑网格/安全区是否混入最终导出由评测项 7 判定）。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：固定一个主题，打开尺寸与安全区信息区以及海报预览。",
+          "**验证点 1（规格与 viewBox）**：依次选择四种尺寸 → 断言预览比例、SVG viewBox 和尺寸信息区同步匹配题面规格。",
+          "**验证点 2（真正重排）**：对比四种尺寸截图 → 断言标题、信息块、主视觉和二维码位置发生布局重排，不是同一竖版被缩放、裁掉或留黑边。",
+          "**验证点 3（场景规则）**：分别检查 A3、Story、Landscape、Social Post → 断言安全区、横向分置或缩略图可读性符合各自场景要求。",
+          "**验证点 4（不溢出与可见）**：在四种尺寸间切换并输入较长文本 → 断言文字、票务和二维码在各尺寸重排后都留在 viewBox 内、不越界，也没有关键信息被裁掉（辅助层导出问题不在本项判定）。"
+        ]
+      }
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pointwise",
+      "task": "参数编辑、持久化与 JSON 导入导出——控制面板参数应驱动同一份海报状态，并能可靠保存、恢复和处理非法输入。",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "控制面板至少可修改主色、辅助色、背景色、主题、输出尺寸、density、seed、是否显示安全区和是否显示网格，修改后 SVG 立即更新"
+        },
+        {
+          "criterion_id": "6.2",
+          "text": "density 和 seed 只影响生成式主视觉，不会改写活动文字内容或丢失用户输入；"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：打开控制面板、参数摘要和海报预览，记录当前参数。",
+          "**验证点 1（参数即时更新）**：修改颜色、主题、尺寸、density、seed、网格和安全区开关 → 断言 SVG 预览与参数摘要立即同步变化。",
+          "**验证点 2（seed/density 边界）**：只调整 density 和 seed → 断言主视觉变化但标题、日期、地点、票价等文本保持用户输入不变。"
+        ]
+      }
+    },
+    {
+      "task_id": "7",
+      "judge_mode": "pointwise",
+      "task": "SVG/PNG 导出与复制源码——导出结果应与当前参数一致、可独立使用，并正确排除默认编辑辅助层。",
+      "criteria": [
+        {
+          "criterion_id": "7.1",
+          "text": "下载当前 SVG 和复制 SVG 源码输出的内容与当前主题、尺寸、文本、配色、seed、density 和主视觉一致"
+        },
+        {
+          "criterion_id": "7.2",
+          "text": "导出的 SVG 可独立打开，不依赖当前 HTML 页面中的外部 CSS、远程资源或运行时脚本才能显示海报"
+        },
+        {
+          "criterion_id": "7.3",
+          "text": "网格、安全区、控制点和页面 UI 默认不进入最终导出，除非用户显式选择包含安全区预览"
+        },
+        {
+          "criterion_id": "7.4",
+          "text": "PNG 导出比例与当前输出规格一致，若实际像素使用非全尺寸倍率需明确标注，重复导出不会卡死或导出旧状态。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：设置一组明显不同于默认的主题、尺寸、颜色、文本、seed 和 density，关闭默认网格/安全区导出。",
+          "**验证点 1（SVG 当前一致）**：点击下载 SVG 和复制 SVG → 断言输出源码中的 viewBox、文字、颜色和主视觉参数与当前界面一致。",
+          "**验证点 2（SVG 独立可用）**：用新标签页或独立文件打开导出的 SVG → 断言海报完整显示，不需要当前 HTML、远程 CSS 或网络资源。",
+          "**验证点 3（辅助层排除）**：开启编辑网格/安全区后导出默认 SVG → 断言最终文件不含页面 UI 或辅助层；若勾选包含安全区，则只包含对应预览层。",
+          "**验证点 4（PNG 稳定）**：导出 PNG 并检查图片宽高比例，再快速连续导出多次 → 断言比例符合当前规格，倍率说明清楚，导出按钮和文件状态不混乱。"
+        ]
+      }
+    },
+    {
+      "task_id": "8",
+      "judge_mode": "pointwise",
+      "task": "生成器在桌面和 360px 下都应可完成核心编辑导出",
+      "criteria": [
+        {
+          "criterion_id": "8.1",
+          "text": "360px 视口下仍可切换主题/尺寸、修改文本、调整 seed/density、导出 SVG/JSON，海报预览等比缩放且页面无级别横向溢出"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：分别准备 1440×900 和 360×800 视口，并在系统或浏览器中可模拟 reduced-motion。"
+        ]
+      }
+    },
+    {
+      "task_id": "9",
+      "judge_mode": "pairwise_gsb",
+      "task": "海报审美与艺术节视觉定位——海报应精准体现 NEON HARBOR 2027「城市声音与数字艺术节」的数字艺术与音乐节气质，把「港口声波 + 城市网格 + 像素呼吸」的视觉语言做出成品级设计感，并在当前主题内达到真实宣传物料的完成度。",
+      "criteria": [
+        {
+          "criterion_id": "9.1",
+          "text": "艺术节气质与母题：呈现数字艺术/音乐节的前卫、律动感而非商务后台风；主视觉可辨海浪声波、城市网格、港口航线、发光像素节点、抽象 N/H 等母题被有意构图，而非随机圆加渐变光球堆砌"
+        },
+        {
+          "criterion_id": "9.2",
+          "text": "海报级排版张力：主标题 NEON HARBOR 2027 尺度统治，与副标题、内容列表（LIVE / INSTALLATION / WORKSHOP / NIGHT WALK）、票务形成清晰主次，中英混排对齐，非表单平铺或居中大杂烩"
+        },
+        {
+          "criterion_id": "9.3",
+          "text": "配色契合当前主题氛围：配色克制且贴合主题——Geometric Pulse 高对比几何、Swiss Grid 克制网格、Night Signal 深色港口信号，辉光/滤镜不过度、不糊小字（三主题之间是否真正差异化由评测项 4 判定）"
+        },
+        {
+          "criterion_id": "9.4",
+          "text": "成品感、拒绝 AI 套路：达到真实艺术节宣传物料水准，网格/间距/字号克制统一，主体不被装饰抢走，无渐变光球、玻璃卡片、居中标题加装饰圆等通用 AI 风。"
+        }
+      ]
+    }
+  ]
+}

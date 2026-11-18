@@ -1,0 +1,333 @@
+{
+  "questions": [
+    {
+      "number": 1,
+      "id": "frontenjoyai-001",
+      "categories": [
+        "数据可视化"
+      ],
+      "tasks": 7,
+      "criteria": 19,
+      "validation_protocols": 0
+    },
+    {
+      "number": 2,
+      "id": "frontenjoyai-002",
+      "categories": [
+        "网页 / 业务界面",
+        "表单系统"
+      ],
+      "tasks": 7,
+      "criteria": 24,
+      "validation_protocols": 4
+    },
+    {
+      "number": 3,
+      "id": "frontenjoyai-003",
+      "categories": [
+        "网页 / 业务界面",
+        "官网界面"
+      ],
+      "tasks": 6,
+      "criteria": 19,
+      "validation_protocols": 0
+    },
+    {
+      "number": 4,
+      "id": "frontenjoyai-004",
+      "categories": [
+        "网页 / 业务界面",
+        "移动端应用界面"
+      ],
+      "tasks": 9,
+      "criteria": 35,
+      "validation_protocols": 7
+    },
+    {
+      "number": 5,
+      "id": "frontenjoyai-005",
+      "categories": [
+        "SVG / 矢量图形生成",
+        "SVG 动画"
+      ],
+      "tasks": 7,
+      "criteria": 27,
+      "validation_protocols": 7
+    },
+    {
+      "number": 6,
+      "id": "frontenjoyai-006",
+      "categories": [
+        "SVG / 矢量图形生成",
+        "静态 SVG 插画/场景"
+      ],
+      "tasks": 5,
+      "criteria": 16,
+      "validation_protocols": 0
+    },
+    {
+      "number": 7,
+      "id": "frontenjoyai-007",
+      "categories": [
+        "应用",
+        "3D 游戏"
+      ],
+      "tasks": 8,
+      "criteria": 25,
+      "validation_protocols": 7
+    },
+    {
+      "number": 8,
+      "id": "frontenjoyai-008",
+      "categories": [
+        "应用",
+        "复古 RPG/回合制游戏"
+      ],
+      "tasks": 8,
+      "criteria": 27,
+      "validation_protocols": 7
+    },
+    {
+      "number": 9,
+      "id": "frontenjoyai-009",
+      "categories": [
+        "网页 / 业务界面",
+        "工作台"
+      ],
+      "tasks": 5,
+      "criteria": 28,
+      "validation_protocols": 0
+    },
+    {
+      "number": 10,
+      "id": "frontenjoyai-010",
+      "categories": [
+        "演示 / 概念可视化",
+        "3D交互演示"
+      ],
+      "tasks": 4,
+      "criteria": 15,
+      "validation_protocols": 0
+    },
+    {
+      "number": 11,
+      "id": "frontenjoyai-011",
+      "categories": [
+        "演示 / 概念可视化",
+        "3D交互演示"
+      ],
+      "tasks": 8,
+      "criteria": 12,
+      "validation_protocols": 0
+    },
+    {
+      "number": 12,
+      "id": "frontenjoyai-012",
+      "categories": [
+        "演示 / 概念可视化",
+        "时序动画演示"
+      ],
+      "tasks": 9,
+      "criteria": 36,
+      "validation_protocols": 9
+    },
+    {
+      "number": 13,
+      "id": "frontenjoyai-013",
+      "categories": [
+        "演示 / 概念可视化",
+        "3D交互演示"
+      ],
+      "tasks": 7,
+      "criteria": 23,
+      "validation_protocols": 7
+    },
+    {
+      "number": 14,
+      "id": "frontenjoyai-014",
+      "categories": [
+        "数据可视化",
+        "博弈模拟可视化"
+      ],
+      "tasks": 10,
+      "criteria": 49,
+      "validation_protocols": 9
+    },
+    {
+      "number": 15,
+      "id": "frontenjoyai-015",
+      "categories": [
+        "网页 / 业务界面",
+        "教育应用"
+      ],
+      "tasks": 8,
+      "criteria": 29,
+      "validation_protocols": 8
+    },
+    {
+      "number": 16,
+      "id": "frontenjoyai-016",
+      "categories": [
+        "网页 / 业务界面",
+        "官网界面"
+      ],
+      "tasks": 6,
+      "criteria": 26,
+      "validation_protocols": 0
+    },
+    {
+      "number": 17,
+      "id": "frontenjoyai-017",
+      "categories": [
+        "数据可视化",
+        "数据看板"
+      ],
+      "tasks": 6,
+      "criteria": 20,
+      "validation_protocols": 5
+    },
+    {
+      "number": 18,
+      "id": "frontenjoyai-018",
+      "categories": [
+        "演示 / 概念可视化",
+        "仿真模拟（非3D）"
+      ],
+      "tasks": 9,
+      "criteria": 31,
+      "validation_protocols": 8
+    },
+    {
+      "number": 19,
+      "id": "frontenjoyai-019",
+      "categories": [
+        "演示 / 概念可视化",
+        "3D交互演示"
+      ],
+      "tasks": 9,
+      "criteria": 33,
+      "validation_protocols": 8
+    },
+    {
+      "number": 20,
+      "id": "frontenjoyai-020",
+      "categories": [
+        "网页 / 业务界面",
+        "移动端应用界面"
+      ],
+      "tasks": 7,
+      "criteria": 23,
+      "validation_protocols": 7
+    },
+    {
+      "number": 21,
+      "id": "frontenjoyai-021",
+      "categories": [
+        "应用",
+        "闯关游戏"
+      ],
+      "tasks": 8,
+      "criteria": 21,
+      "validation_protocols": 8
+    },
+    {
+      "number": 22,
+      "id": "frontenjoyai-022",
+      "categories": [
+        "网页 / 业务界面",
+        "检测系统"
+      ],
+      "tasks": 8,
+      "criteria": 23,
+      "validation_protocols": 8
+    },
+    {
+      "number": 23,
+      "id": "frontenjoyai-023",
+      "categories": [
+        "应用",
+        "3D游戏"
+      ],
+      "tasks": 7,
+      "criteria": 25,
+      "validation_protocols": 7
+    },
+    {
+      "number": 24,
+      "id": "frontenjoyai-024",
+      "categories": [
+        "演示 / 概念可视化",
+        "仿真模拟（非3D）"
+      ],
+      "tasks": 6,
+      "criteria": 25,
+      "validation_protocols": 5
+    },
+    {
+      "number": 25,
+      "id": "frontenjoyai-025",
+      "categories": [
+        "应用",
+        "可交互模拟器"
+      ],
+      "tasks": 6,
+      "criteria": 26,
+      "validation_protocols": 6
+    },
+    {
+      "number": 26,
+      "id": "frontenjoyai-026",
+      "categories": [
+        "SVG / 矢量图形生成",
+        "参数化SVG生成器"
+      ],
+      "tasks": 9,
+      "criteria": 30,
+      "validation_protocols": 8
+    },
+    {
+      "number": 27,
+      "id": "frontenjoyai-027",
+      "categories": [
+        "应用",
+        "图像编辑应用"
+      ],
+      "tasks": 9,
+      "criteria": 32,
+      "validation_protocols": 9
+    },
+    {
+      "number": 28,
+      "id": "frontenjoyai-028",
+      "categories": [
+        "数据可视化",
+        "数据转换工作台"
+      ],
+      "tasks": 7,
+      "criteria": 29,
+      "validation_protocols": 7
+    },
+    {
+      "number": 29,
+      "id": "frontenjoyai-029",
+      "categories": [
+        "SVG / 矢量图形生成",
+        "静态 SVG 插画/场景"
+      ],
+      "tasks": 6,
+      "criteria": 22,
+      "validation_protocols": 6
+    },
+    {
+      "number": 30,
+      "id": "frontenjoyai-030",
+      "categories": [
+        "网页 / 业务界面",
+        "08_证据审阅与标注工作台"
+      ],
+      "tasks": 8,
+      "criteria": 32,
+      "validation_protocols": 8
+    }
+  ]
+}

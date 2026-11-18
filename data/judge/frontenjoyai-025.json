@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-025",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "工程结构与逐球引擎基础——交付 Vite + React + TypeScript 多文件工程（核心逻辑拆到可单测 simulation/domain 模块，不用 dangerouslySetInnerHTML/字符串模板页面），实现确定性 RNG 逐球推进、balls/strikes 规则（walk/strikeout 重置打席）、三出局换边、打线轮转跨 inning 延续、九局/明确平局规则、阵容合法校验与事件日志。",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "工程结构完整、scripts 含 dev/build/test/typecheck、核心逻辑可测试 import、build/test/typecheck 通过"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "balls/strikes/outs/换局规则正确"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "打线轮转跨局延续"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "九局结算且平局有明确规则"
+        },
+        {
+          "criterion_id": "1.5",
+          "text": "invalid lineup 被拦截不崩溃。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：加载页面，确认 scorebug、球场、战术/名单面板可见。",
+          "**验证点 1（逐球规则）**：连续 Sim Pitch → 断言 balls/strikes 计数正确、满 4 球 walk / 3 好球 strikeout 后打席重置、三出局换半局。",
+          "**验证点 2（轮转/终局/非法阵容）**：模拟跨局 → 断言打线位置跨 inning 延续；构造非法阵容（缺员/重复）→ 断言被拦截并提示，不崩溃。"
+        ]
+      }
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "能力驱动的 matchup 概率——每球结果分布由当前打者与投手能力值共同派生（打者 contact/power/discipline、投手 control/velocity/stamina），叠加策略与 seed；更换阵容/球员或换投必须改变结果分布。",
+      "instructions": "（判断依据：读源码 + 测试 + 交互）：1. 结果分布由 matchup 能力派生、非固定权重表",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "能力值真正参与计算（power 高更易长打、discipline 高更易 walk、control 高更少 walk 等方向合理）"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "换阵容/换投改变分布"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "计算确定性、同 seed 可复现。高频失败反例：固定概率表、能力值只展示不参与、换人结果不变。评分锚点：能力驱动+方向合理+换人影响+可复现=1；能力参与但方向粗糙或换人影响弱=0.5；固定表能力摆设=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：记录当前打者/投手与一段固定 seed 下的结果倾向（可用测试统计多球分布）。",
+          "**验证点 1（能力影响）**：把强打者换成弱打者（或换一名能力差异大的投手）→ 断言同 seed 下结果分布明显变化（如长打/三振比例改变）。",
+          "**验证点 2（可复现）**：reset same seed 重放同操作 → 断言分布与首次一致。"
+        ]
+      }
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "情境化垒上推进状态机——垒上推进符合真实棒球情境：一垒有人且不足两出局滚地可双杀；三垒有人高飞出局可高飞牺牲得分（tag-up）；强制/非强制进垒区分正确（满垒保送挤回本垒）；激进跑垒可多进一垒也可能试图额外进垒被触杀；任何时刻无两人同垒。",
+      "instructions": "（判断依据：读源码 + 测试 + 交互）：1. 双杀在正确情境触发",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "高飞牺牲 tag-up 得分正确"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "强制/非强制进垒正确"
+        },
+        {
+          "criterion_id": "3.3",
+          "text": "激进跑垒既有额外进垒也有被杀风险"
+        },
+        {
+          "criterion_id": "3.4",
+          "text": "无两名跑者占同一垒。高频失败反例：所有人进相同垒数、无双杀/牺牲打、满垒保送不得分、跑者叠垒。评分锚点：双杀+牺牲打+强制非强制+激进风险+不叠垒全对=1；部分情境缺失=0.5；仅固定进垒=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：通过测试或构造局面布置特定垒上状态。",
+          "**验证点 1（双杀）**：一垒有人、不足两出局，触发滚地出局 → 断言可出现双杀（两出局、垒上相应清空）。",
+          "**验证点 2（高飞牺牲）**：三垒有人、不足两出局，触发高飞出局 → 断言三垒跑者 tag-up 得分。",
+          "**验证点 3（强制进垒/激进）**：满垒保送 → 断言挤回一分；激进跑垒下观察 → 断言存在额外进垒或被触杀，且从不出现两人同垒。"
+        ]
+      }
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "投手体力与换投/代打名单管理——投手每球消耗体力、体力下降影响 matchup 效果；用户可在打席间换投或代打/代跑，被换下的球员不可再次上场，名单/换人状态一致且随对局持久化。",
+      "instructions": "（判断依据：交互 + 测试）：1. 投手体力随球数下降、影响其被打/控球表现",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "可换投与代打/代跑"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "被换下者不可再上场（UI 禁用或校验拒绝）"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "换人后名单/场上状态一致。高频失败反例：体力不影响效果、无换人、换下的球员还能再上、换人后状态错乱。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：让当前投手投出较多球数。",
+          "**验证点 1（体力衰减）**：持续 Sim Pitch → 断言投手体力读数下降、后续 matchup 效果随之变化。",
+          "**验证点 2（换投）**：换上后备投手 → 断言场上投手更新；尝试再次换回被换下的投手 → 断言被拒绝/禁用。",
+          "**验证点 3（代打）**：对当前打者代打 → 断言打者更新、被换下者不可再上。"
+        ]
+      }
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pointwise",
+      "task": "胜率时间线与逐球员 box score 联动——一条由局/比分/垒-出局状态确定性派生、逐球更新的胜率曲线，关键转折回合高亮、与事件日志联动；box score 为逐球员真实统计（打者 AB/H/R/RBI/BB/K、投手 IP/H/R/ER/K/BB），由事件派生非写死。",
+      "instructions": "（判断依据：交互 + 读源码 + 测试）：1. 胜率由 inning/比分/垒-出局确定性派生、逐球更新",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "关键回合高亮、hover 曲线与事件/回合联动"
+        },
+        {
+          "criterion_id": "5.2",
+          "text": "box score 为逐球员统计、字段正确、由真实事件派生"
+        },
+        {
+          "criterion_id": "5.3",
+          "text": "同 seed 复现相同胜率序列与 box score。高频失败反例：无胜率或写死、box score 只有球队总分、曲线与事件不联动。评分锚点：WP派生+联动+逐球员box score=1；有其一缺其一=0.5；两者皆缺/写死=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：模拟若干打席产生比分变化。",
+          "**验证点 1（WP 更新+联动）**：得分/出局事件后 → 断言胜率曲线更新、关键回合高亮；hover 某点 → 断言联动到对应事件/回合。",
+          "**验证点 2（逐球员 box score）**：查看 box score → 断言展示各球员 AB/H/R/RBI/BB/K 与投手 IP/H/R/ER/K/BB，与事件日志一致。"
+        ]
+      }
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pointwise",
+      "task": "确定性 replay、战术影响、reset same seed 与 scorebug 可视化/响应式/测试文档——同 seed + 同操作序列（含换人、策略调整）产生同结果；战术调整只影响后续事件、不改写历史；replay 用 event log 复现、reset same seed 可复现；电视转播计分风；360px 可用；reduced-motion 降级；测试与 README 齐全。",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "同 seed + 同操作序列（含一次换投）结果一致"
+        },
+        {
+          "criterion_id": "6.2",
+          "text": "战术调整不改写历史事件"
+        },
+        {
+          "criterion_id": "6.3",
+          "text": "replay 不重新随机、reset same seed 回到初始"
+        },
+        {
+          "criterion_id": "6.4",
+          "text": "scorebug/球场/胜率/事件为转播风、清晰"
+        },
+        {
+          "criterion_id": "6.5",
+          "text": "360px 下 scorebug/球场/胜率/核心操作可用、不错位"
+        },
+        {
+          "criterion_id": "6.6",
+          "text": "prefers-reduced-motion 减少动画但状态清晰"
+        },
+        {
+          "criterion_id": "6.7",
+          "text": "≥12 Vitest + 2 Playwright 覆盖能力驱动概率、双杀/牺牲打、换投、胜率、box score、replay、reset 等"
+        },
+        {
+          "criterion_id": "6.8",
+          "text": "README 说明运行/构建/测试/模块/数据模型/能力驱动与垒上模型/投手体力/胜率模型/RNG-seed/reset-replay/已知限制。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：记录一场（含一次换投与策略调整）的操作序列与结果。",
+          "**验证点 1（确定性/不改写历史）**：reset same seed 重放同序列 → 断言结果一致；中途调整策略 → 断言仅影响后续事件、历史事件不变。",
+          "**验证点 2（移动+降级）**：360px 下 → 断言 scorebug/球场/胜率/操作可用不错位；启用 prefers-reduced-motion → 断言动画减少但状态清晰。",
+          "**静态验证**：运行 test/lint/typecheck；读 README 与测试核对覆盖与模型描述。"
+        ]
+      }
+    }
+  ]
+}

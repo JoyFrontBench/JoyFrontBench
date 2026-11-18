@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-023",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "游戏应在普通启动流程中呈现明亮、可辨认且持续动态的原创 3D 生存竞技场，场景中的人物（敌人）与障碍物清晰可见、可辨识，Canvas 铺满主视口，HUD 在验收基准分辨率下完整不溢出，且开始界面与战斗界面保持统一、协调的原创科幻界面风格。",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "Start Screen 展示《Pulse Arena》、操作说明与历史最佳记录并提供 Start Game，点击后进入 Pointer Lock 且 WebGL Canvas 铺满主视口，而非缩在卡片里的小型 3D 预览"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "出生视角能清楚辨认地面、中央坡道、≥8 个掩体、高台与敌人轮廓，不因曝光过低或大面积纯黑而看不清，发光材质仅作强调不代替基础照明"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "画面持续动态且状态驱动——玩家受伤、Scout、Heavy、飞行弹体、Hit Marker、Wave Transition、Threat Escalation、Weapon Evolved 使用可相互区分的视觉反馈，敌人/枪械/弹体有真实帧间变化而非静态几何体"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "1440×900 桌面视口下顶部状态栏、左下 HP、右下弹药/武器进度、中心准星全部位于视口内，互不遮挡、不被裁切、无横向滚动。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：清空 localStorage，以普通 URL 在 1440×900 桌面视口打开应用，检查 Start Screen 后点击 Start Game 进入游戏。",
+          "**验证点 1（首屏 + 全屏）**：观察 Start Screen 字段与历史记录 → 断言《Pulse Arena》、操作说明、最佳成绩、Start Game 齐全；开战后 → 断言 Canvas 成为主视图、HUD 完整出现，而非卡片内小预览。",
+          "**验证点 3（动态反馈）**：在出生点及移动后多方向连续采集数帧战斗画面 → 断言地面/坡道/掩体/敌人轮廓清晰可辨，且敌人、枪械或弹体产生真实帧间变化；触发受伤/命中/换波 → 断言各类反馈视觉可区分。",
+          "**验证点 4（HUD 不溢出）**：测量顶部/左下/右下/中心各 HUD 元素边界与 document 宽度 → 断言均在视口内、无重叠、无横向滚动。",
+          "（第 2 条为亮度与可辨识度的视觉判断，随验证点 1/3 一并观察断言，并可结合场景源码核对几何体、出生区域与光照定义数量。）"
+        ]
+      }
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "视角、移动、跳跃、冲刺必须真实作用于玩家且相对摄像机朝向；失焦、暂停、换波、结束等场景必须停止输入，恢复后不补执行积压操作。",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "点击竞技场进入 Pointer Lock 后，鼠标改变 yaw 与受限 pitch（不无限翻转），WASD 按摄像机朝向移动而非固定世界坐标，Shift 明显提速"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "Space 仅在落地后触发跳跃，长按或连续按下不产生无限叠跳"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "退出 Pointer Lock、窗口失焦、Pause、Wave Transition、Game Over 时停止移动与射击，且恢复（Resume / 重新聚焦）后不一次性补执行冻结期间累积的旧输入。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：使用能真实获取 Pointer Lock 的桌面浏览器进入游戏，打开 Debug Panel 观察 Player Position。",
+          "**验证点 1（输入语义）**：转向后分别执行 W/A/S/D 与 Shift+W → 断言移动方向随视角变化、冲刺明显更快，上下看不会使视角翻转。",
+          "**验证点 2（跳跃不叠加）**：长按并连续快按 Space → 断言仅落地后起跳、不出现连续叠跳升空。",
+          "**验证点 3（冻结 + 无补输入）**：移动或射击途中按 P / Esc 并切换窗口焦点，记录位置与 HUD 数值后等待 → 断言冻结期间状态稳定；恢复后 → 断言不一次性补执行冻结期间的旧移动/射击。"
+        ]
+      }
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "边界墙与掩体必须真实参与碰撞，高速冲刺不穿薄障碍、不掉出地图；高台与箱顶要能站立与上下；边缘轻微重叠时不得永久卡死。",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "边界墙与掩体参与碰撞，高速 Shift 冲刺采用分段、扫掠或等效连续检测，移动 / 冲刺全程不穿模——不嵌入或穿透墙体、掩体、箱体等障碍物，不越过薄障碍，也不掉出地图"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "玩家能经坡道/楼梯登上高台、从高台跳到箱顶、在箱顶移动并正常走下，高台与箱顶高度参与落地判定"
+        },
+        {
+          "criterion_id": "3.3",
+          "text": "处于箱体边缘或发生轻微碰撞重叠时不永久卡死，继续向外移动能够脱离障碍。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：进入正常游戏，选定一处薄掩体、一条坡道通往的高台与一个可从高台跳达的箱体。",
+          "**验证点 1（穿模防护）**：对薄掩体持续 Shift+W 冲刺 → 断言被阻挡、不穿过、不掉出地图。",
+          "**验证点 2（高度支撑）**：沿坡道登高 → 从高台跳到箱顶 → 在箱顶移动后走下 → 断言全程稳定站立、不陷入箱体。",
+          "**验证点 3（脱困）**：走到箱体边缘制造轻微重叠 → 断言持续向外移动能脱离、不永久卡死。",
+          "（高速位移与支撑高度可结合移动碰撞源码与项目自带单测交叉验证，确认大位移被分段/扫掠处理、高台与箱顶高度参与落地判定。）"
+        ]
+      }
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "射击、换弹、命中与遮挡必须遵循同一套武器规则，不产生负弹药、幽灵射击或穿墙命中。",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "LV1 初始属性为 30 发弹匣、120 发备用、25 Damage、约每秒 6 发、约 1.5 秒 Reload，准星中心与 raycast / hitscan 方向一致"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "每次合法射击只消耗 1 发且受射速限制，空弹匣、Reload、Pause、Wave Transition、Game Over 期间不能射击（数值不变）"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "Reload 只从 Reserve 补足当前弹匣、Reserve 不为负，满弹匣或无备用弹药时不启动无效换弹"
+        },
+        {
+          "criterion_id": "4.4",
+          "text": "世界碰撞体（墙 / 掩体）位于准星与敌人之间时阻挡命中，不出现穿墙命中。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：开局记录 Ammo、Reserve、Shots Fired、Shots Hit。",
+          "**验证点 1（射速 + 准星一致）**：短按及按住左键 → 断言合法射击与 Ammo 一一对应、自动射击受射速限制，命中方向与准星中心一致。",
+          "**验证点 2（禁射时机）**：打空弹匣后继续点击、以及在 Reload / Pause / Game Over 期间开火 → 断言 Ammo 与统计不变化。",
+          "**验证点 3（换弹事务）**：消耗若干子弹后按 R → 断言换弹完成前不能开火、完成后弹匣与 Reserve 按差额变化且 Reserve 不为负；满弹匣按 R → 断言不消耗备用弹药。",
+          "**验证点 4（遮挡）**：用掩体挡住敌人后射击 → 断言射线被世界碰撞体阻挡、不穿墙命中。可结合武器纯逻辑单测覆盖低 / 空 Reserve、Reload 中开火与弹药下限。"
+        ]
+      }
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pointwise",
+      "task": "两类无人机应主动战斗、外观可区分、生成位置安全，死亡后彻底停止行为并从活动集合移除。",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "Scout（HP 75、较快、低伤）与 Heavy（HP 150、较慢、高伤）外观明显不同，均具备 Spawn / Patrol / Chase / Attack / Dead 状态，会主动接近并周期性攻击玩家"
+        },
+        {
+          "criterion_id": "5.2",
+          "text": "敌人出生点与玩家保持最小安全距离、不生成在玩家当前位置，也不明显永久卡死在墙体中"
+        },
+        {
+          "criterion_id": "5.3",
+          "text": "敌人死亡后从活动敌人集合移除，停止移动、攻击与碰撞，不再造成伤害。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：正常开局，打开 Debug Panel 观察 Enemy Count。",
+          "**验证点 1（AI + 类型）**：观察敌人从出生到接近、追击、攻击的过程 → 断言 Scout / Heavy 视觉与行为差异明显、会主动战斗。",
+          "**验证点 2（安全距离）**：多次开局或换波观察出生点 → 断言敌人不出现在玩家脚下、与玩家保持安全距离、不永久卡在墙里。",
+          "**验证点 3（死亡清理）**：击败至少一个敌人 → 断言 Enemy Count 减少、死亡对象不再移动 / 攻击 / 扣血。可结合 AI 状态迁移与死亡移除源码交叉验证。"
+        ]
+      }
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pointwise",
+      "task": "敌人必须通过场景中真实移动、可被掩体拦截的弹体对玩家造成伤害，而不能在攻击计时结束时直接扣血。",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "Scout 与 Heavy 弹体在颜色、大小、速度或尾迹上可区分，沿发射方向逐帧飞行且具明显弹头 / 发光尾迹"
+        },
+        {
+          "criterion_id": "6.2",
+          "text": "只有弹体真正命中玩家碰撞体后才扣 HP，而非攻击计时结束时直接扣血"
+        },
+        {
+          "criterion_id": "6.3",
+          "text": "地面、墙体、高台与掩体能拦截弹体，弹体命中或超时后及时清理，高速弹体经分段 / 扫掠检测不穿过玩家或薄墙"
+        },
+        {
+          "criterion_id": "6.4",
+          "text": "Pause、Wave Transition、Game Over 时在途弹体冻结、不移动不伤害，Restart 后不残留。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：正常开局，移动到无遮挡位置等待敌人进入 Attack 状态。",
+          "**验证点 1/2（可见飞行 + 命中才扣血）**：连续截图或录像 → 断言先看到弹体从敌人向玩家移动、随后命中才使 HP 下降，Scout / Heavy 弹体可区分。",
+          "**验证点 3（遮挡拦截）**：移动到掩体后方观察来弹 → 断言遮挡能拦截弹体、不扣 HP。",
+          "**验证点 4（暂停冻结 + 无残留）**：弹体飞行期间按 P → 断言在途弹体冻结、HP 与位置不变；Restart 后 → 断言无残留弹体。可运行弹体移动与 swept hit 单测确认高速弹体不跳过玩家或薄墙。"
+        ]
+      }
+    },
+    {
+      "task_id": "8",
+      "judge_mode": "pointwise",
+      "task": "击杀应同时驱动真实武器属性、补给、HUD 进度与战绩，而不是只显示升级文案；计分与命中率使用同一局权威数据。",
+      "criteria": [
+        {
+          "criterion_id": "8.1",
+          "text": "累计击杀在 0/6/16/32/55 精确切换 LV1–LV5，各档 Damage、Fire Rate、Magazine、Reload 与 Reserve 奖励符合题面基准，LV5 显示 Max Level 且不存在 LV6"
+        },
+        {
+          "criterion_id": "8.2",
+          "text": "跨阈值击杀原子地切换属性、装满新弹匣、增加对应 Reserve、取消正在进行的旧 Reload，同一次击杀只升级一次"
+        },
+        {
+          "criterion_id": "8.3",
+          "text": "HUD 显示 Weapon Name / Level / Damage、击杀进度条与 Weapon Evolved 动效，且升级真正改变武器属性而非仅文案"
+        },
+        {
+          "criterion_id": "8.4",
+          "text": "Scout / Heavy 的基础击杀分按实现中一致、可复核的规则计算；连杀、快速通关或高命中率奖励另行核对，不能因总分增量高于基础击杀分而判错。score、kills、shots fired、shots hit 与 accuracy（= hit / fired）使用同一局权威数据、彼此自洽。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）",
+        "steps": [
+          "**前置条件（precondition）**：正常战斗中记录 Kills、Score、Shots Hit 与 HUD / Debug 数值。",
+          "**验证点 3/4（击杀联动）**：击败 Scout 与 Heavy → 断言 Enemies、Kills、Score、Shots Hit 同步变化，分值与敌人类型对应，accuracy 与 hit/fired 自洽。",
+          "**验证点 3（升级改属性）**：击杀累计跨过某阈值 → 断言 HUD 等级 / 进度条更新、出现 Weapon Evolved 动效，且 Damage / Fire Rate / Magazine 等属性实际改变。",
+          "（第 1、2 条运行 0/5/6/15/16/31/32/54/55 边界与升级事务单测，核对五档完整属性、Max Level、满弹匣、Reserve 奖励与 Reload 取消，无需人工连续打到 LV5。）"
+        ]
+      }
+    }
+  ]
+}

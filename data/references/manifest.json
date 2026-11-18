@@ -1,0 +1,259 @@
+{
+  "schema_version": 2,
+  "kind": "frontend-visual-reference-set",
+  "protocol": "frozen-visual",
+  "id": "front-references",
+  "questions": [
+    {
+      "number": 1,
+      "id": "frontenjoyai-001",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "5"
+      ],
+      "criterion_ids": [
+        "5.1"
+      ],
+      "scene_count": 1,
+      "frame_count": 1
+    },
+    {
+      "number": 2,
+      "id": "frontenjoyai-002",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "1"
+      ],
+      "criterion_ids": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5",
+        "1.6",
+        "1.7"
+      ],
+      "scene_count": 9,
+      "frame_count": 9
+    },
+    {
+      "number": 3,
+      "id": "frontenjoyai-003",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "6"
+      ],
+      "criterion_ids": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "scene_count": 5,
+      "frame_count": 5
+    },
+    {
+      "number": 4,
+      "id": "frontenjoyai-004",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "9"
+      ],
+      "criterion_ids": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4",
+        "9.5",
+        "9.6"
+      ],
+      "scene_count": 7,
+      "frame_count": 7
+    },
+    {
+      "number": 7,
+      "id": "frontenjoyai-007",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "8"
+      ],
+      "criterion_ids": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "scene_count": 2,
+      "frame_count": 2
+    },
+    {
+      "number": 8,
+      "id": "frontenjoyai-008",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "8"
+      ],
+      "criterion_ids": [
+        "8.1",
+        "8.2",
+        "8.3"
+      ],
+      "scene_count": 3,
+      "frame_count": 3
+    },
+    {
+      "number": 9,
+      "id": "frontenjoyai-009",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "5"
+      ],
+      "criterion_ids": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4"
+      ],
+      "scene_count": 2,
+      "frame_count": 2
+    },
+    {
+      "number": 10,
+      "id": "frontenjoyai-010",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "3"
+      ],
+      "criterion_ids": [
+        "3.1",
+        "3.2",
+        "3.3"
+      ],
+      "scene_count": 4,
+      "frame_count": 5
+    },
+    {
+      "number": 11,
+      "id": "frontenjoyai-011",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "1"
+      ],
+      "criterion_ids": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "scene_count": 4,
+      "frame_count": 4
+    },
+    {
+      "number": 13,
+      "id": "frontenjoyai-013",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "3"
+      ],
+      "criterion_ids": [
+        "3.1"
+      ],
+      "scene_count": 3,
+      "frame_count": 3
+    },
+    {
+      "number": 15,
+      "id": "frontenjoyai-015",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "8"
+      ],
+      "criterion_ids": [
+        "8.1"
+      ],
+      "scene_count": 2,
+      "frame_count": 2
+    },
+    {
+      "number": 16,
+      "id": "frontenjoyai-016",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "6"
+      ],
+      "criterion_ids": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5"
+      ],
+      "scene_count": 6,
+      "frame_count": 6
+    },
+    {
+      "number": 26,
+      "id": "frontenjoyai-026",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "9"
+      ],
+      "criterion_ids": [
+        "9.1",
+        "9.2",
+        "9.3",
+        "9.4"
+      ],
+      "scene_count": 3,
+      "frame_count": 3
+    },
+    {
+      "number": 29,
+      "id": "frontenjoyai-029",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "6"
+      ],
+      "criterion_ids": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4"
+      ],
+      "scene_count": 2,
+      "frame_count": 4
+    },
+    {
+      "number": 30,
+      "id": "frontenjoyai-030",
+      "usage": "pairwise",
+      "entry": "scenes.json",
+      "task_ids": [
+        "1"
+      ],
+      "criterion_ids": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
+      "scene_count": 11,
+      "frame_count": 11
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "protocol": "frozen-visual",
+  "question_id": "frontenjoyai-011",
+  "task_ids": [
+    "1"
+  ],
+  "capture": {
+    "browser": "Google Chrome",
+    "locale": "zh-CN",
+    "timezone": "UTC"
+  },
+  "evidence_scope": "criterion_ids identify relevant comparison views, not proof that a criterion passes. PNGs are unretouched browser captures. Finite samples cannot prove unseen states, source facts or continuous behavior. Keep the original rubric; use needs_review if missing evidence determines the GSB decision.",
+  "comparison_limits": [
+    {
+      "criterion_ids": [
+        "1.2"
+      ],
+      "not_established": "Clarity is observed at sampled times and themes, not proven at every instant of continuous animation."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "initial",
+      "title": "Initial rendered view",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /."
+      ],
+      "frames": [
+        {
+          "path": "images/initial-01.png",
+          "elapsed_ms": 6687
+        }
+      ],
+      "criterion_ids": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ]
+    },
+    {
+      "id": "theme-violet",
+      "title": "Network clarity — 等离紫",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Change the network shape from sphere to starburst.",
+        "Switch the color theme to 等离紫."
+      ],
+      "frames": [
+        {
+          "path": "images/theme-violet-02.png",
+          "elapsed_ms": 29081
+        }
+      ],
+      "criterion_ids": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ]
+    },
+    {
+      "id": "theme-orange",
+      "title": "Network clarity — 脉冲橙",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Change the network shape from sphere to starburst.",
+        "Switch the color theme to 等离紫.",
+        "Switch the color theme to 脉冲橙."
+      ],
+      "frames": [
+        {
+          "path": "images/theme-orange-02.png",
+          "elapsed_ms": 34671
+        }
+      ],
+      "criterion_ids": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ]
+    },
+    {
+      "id": "theme-green",
+      "title": "Network clarity — 生物绿",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "device_scale_factor": 1,
+      "color_scheme": "light",
+      "reduced_motion": "no-preference",
+      "full_page": false,
+      "steps": [
+        "Open the reference with fresh browser storage at /.",
+        "Change the network shape from sphere to starburst.",
+        "Switch the color theme to 等离紫.",
+        "Switch the color theme to 脉冲橙.",
+        "Switch the color theme to 生物绿."
+      ],
+      "frames": [
+        {
+          "path": "images/theme-green-02.png",
+          "elapsed_ms": 40290
+        }
+      ],
+      "criterion_ids": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ]
+    }
+  ]
+}

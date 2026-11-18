@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-010",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "打开页面后观察粒子形态，后点击下方按钮切换形态并完成鼠标拖拽转换视角以及使用滚轮调节大小",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "不选择某个按钮的情况下支持自动循环切换各类形态"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "可以完成点击按钮，手动切换各个形态"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "支持使用鼠标自由旋转视角，以便从不同角度观察粒子结构"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "可以通过滚轮缩放场景。"
+        }
+      ]
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "打开页面后观察下方是否有四个选项用于切换形态，观察粒子主体形态、火花、星空",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "页面能够正常加载，无白屏、报错或资源加载失败。"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "同时实现主体粒子、随机火花和星空背景三层粒子效果。"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "完整实现 Torus Knot、Halvorsen Attractor、Dual Helix 和 De Jong Attractor 四种形态。"
+        }
+      ]
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pairwise_gsb",
+      "task": "科幻电影般的视觉氛围，具有视觉冲击力",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "整体符合科幻、霓虹和电影感的视觉风格。"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "主体粒子、火花和星空之间层级清晰，主体形态是视觉焦点。"
+        },
+        {
+          "criterion_id": "3.3",
+          "text": "UI 统一采用现代玻璃拟态风格，字体、圆角、透明度和边框保持一致。"
+        }
+      ]
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "鼠标操作拖拽实现旋转、按钮切换后观察粒子以及形态变化",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "粒子位置、颜色、亮度和拖尾能够随时间实时更新。"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "四种形态能够动态生成并平滑变换。"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "粒子颜色流动自然，Bloom 辉光适中，不影响形态轮廓辨识。"
+        },
+        {
+          "criterion_id": "4.4",
+          "text": "主体粒子运动平滑，粒子形变过程中具有自然、连续的运动拖尾。火花粒子具有随机的速度和方向，不与主体粒子同步运动。"
+        },
+        {
+          "criterion_id": "4.5",
+          "text": "鼠标旋转、按钮切换后，画面能够即时响应并重新渲染。"
+        }
+      ]
+    }
+  ]
+}

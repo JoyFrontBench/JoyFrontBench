@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "question_id": "frontenjoyai-014",
+  "tasks": [
+    {
+      "task_id": "1",
+      "judge_mode": "pointwise",
+      "task": "Dashboard 信息架构与工程结构——交付 Vite + React + TypeScript 多文件工程，页面整体应呈现训练分析工作台，而不是普通三按钮小游戏；出拳、AI 状态、预测分布、统计卡、历史表格、replay 与设置区域层级清晰。",
+      "criteria": [
+        {
+          "criterion_id": "1.1",
+          "text": "工程含 package.json、index.html、src/main.tsx、src/App.tsx、README.md，scripts 含 dev/build/test/typecheck"
+        },
+        {
+          "criterion_id": "1.2",
+          "text": "首屏是 Dashboard 布局而非三按钮小游戏"
+        },
+        {
+          "criterion_id": "1.3",
+          "text": "核心逻辑可被测试 import"
+        },
+        {
+          "criterion_id": "1.4",
+          "text": "不使用 dangerouslySetInnerHTML、不写字符串模板页面"
+        },
+        {
+          "criterion_id": "1.5",
+          "text": "build/test/typecheck 通过。"
+        }
+      ]
+    },
+    {
+      "task_id": "2",
+      "judge_mode": "pointwise",
+      "task": "出拳回合闭环与模式状态——用户可选择 rock/paper/scissors 出拳，每回合完整记录玩家手势、AI 手势、胜负结果、赛前预测、策略标签和置信度，并支持 best of 15 与 endless 两种 session 模式。",
+      "criteria": [
+        {
+          "criterion_id": "2.1",
+          "text": "三入口可出拳并生成新回合"
+        },
+        {
+          "criterion_id": "2.2",
+          "text": "每回合字段完整"
+        },
+        {
+          "criterion_id": "2.3",
+          "text": "胜负符合 RPS 规则"
+        },
+        {
+          "criterion_id": "2.4",
+          "text": "best of 15 第 15 回合结算并禁止继续"
+        },
+        {
+          "criterion_id": "2.5",
+          "text": "endless 可超 15 回合。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：加载页面，确认出拳区与 mode 切换控件可见。",
+          "**验证点 1（回合生成）**：点击 rock → 断言历史新增第 1 回合并显示各字段。",
+          "**验证点 2（结果正确）**：连续出拳若干次 → 对照 AI 出拳断言胜负符合规则。",
+          "**验证点 3（best of 15）**：完成 15 回合 → 断言结算且第 16 次点击不新增回合。",
+          "**验证点 4（endless）**：reset 切 endless，完成 16 回合 → 断言第 16 回合正常新增。"
+        ]
+      }
+    },
+    {
+      "task_id": "3",
+      "judge_mode": "pointwise",
+      "task": "AI 状态卡与预测分布展示——页面需用状态卡解释本地模拟 AI 当前状态，并以图表展示 rock/paper/scissors 预测分布；分布合计正确，且随 session history 更新。",
+      "criteria": [
+        {
+          "criterion_id": "3.1",
+          "text": "状态卡字段完整"
+        },
+        {
+          "criterion_id": "3.2",
+          "text": "分布合计为 1 或 100%"
+        },
+        {
+          "criterion_id": "3.3",
+          "text": "出拳后状态卡与分布同步更新"
+        },
+        {
+          "criterion_id": "3.4",
+          "text": "解释文案说明策略/预测来源、非纯占位"
+        },
+        {
+          "criterion_id": "3.5",
+          "text": "页面或 README 明确 AI 为本地模拟、不接大模型。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：reset 到初始 session。",
+          "**验证点 1（字段完整）**：检查状态卡 → 断言可见策略标签、最高预测、置信度、解释、最近命中。",
+          "**验证点 2（合计）**：读取分布三项 → 断言合计为 1 或 100%。",
+          "**验证点 3（动态更新）**：连续出 rock 4 次 → 断言分布/最高预测/置信度至少一项变化。"
+        ]
+      }
+    },
+    {
+      "task_id": "4",
+      "judge_mode": "pointwise",
+      "task": "训练可视化图表——训练视图需展示预测命中/未命中时间线、置信度变化和策略标签时间线，图表数据必须来自真实 rounds，并随新回合实时增量更新。",
+      "criteria": [
+        {
+          "criterion_id": "4.1",
+          "text": "训练视图可展开/收起"
+        },
+        {
+          "criterion_id": "4.2",
+          "text": "至少三类训练图表/时间线存在：命中时间线、置信度变化、策略标签时间线"
+        },
+        {
+          "criterion_id": "4.3",
+          "text": "图表点数/条目数与 rounds 对齐"
+        },
+        {
+          "criterion_id": "4.4",
+          "text": "新增回合后图表同步更新"
+        },
+        {
+          "criterion_id": "4.5",
+          "text": "图表视觉清晰，标签/图例/数值可读。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：完成至少 5 回合。",
+          "**验证点 1（训练视图开关）**：点击训练视图开关 → 断言训练面板展开，且可再次收起。",
+          "**验证点 2（三类图表）**：展开训练视图 → 断言可见命中/未命中时间线、置信度变化图、策略标签时间线。",
+          "**验证点 3（数据对齐）**：记录当前 rounds 数 N → 断言图表或时间线中有 N 个对应数据点/条目，或明确显示最近 N 回合。",
+          "**验证点 4（实时更新）**：再出拳 2 回合 → 断言三类图表同步新增或更新到 N+2。"
+        ]
+      }
+    },
+    {
+      "task_id": "5",
+      "judge_mode": "pointwise",
+      "task": "每回合快照与时光回溯——每回合保存\"当时\"快照（赛前预测分布、策略标签、置信度、截至该回合的统计与挑战进度）；提供可拖动时间轴 scrubber，拖到任意回合时整个 dashboard（统计卡、三图、AI 状态卡、挑战进度、最近序列）重建为该回合当时状态，AI 状态卡显示该回合赛前快照而非全量重算。",
+      "criteria": [
+        {
+          "criterion_id": "5.1",
+          "text": "存在可拖动 scrubber 与播放/暂停/上一步/下一步/回开头/跳最新/位置显示"
+        },
+        {
+          "criterion_id": "5.2",
+          "text": "拖到第 k 回合时统计卡、三图、挑战进度、最近序列都回到该回合当时值"
+        },
+        {
+          "criterion_id": "5.3",
+          "text": "AI 状态卡显示的是第 k 回合赛前快照（预测该回合玩家出什么），不是当前全量重算值"
+        },
+        {
+          "criterion_id": "5.4",
+          "text": "源码中存在 per-round snapshot 或等价历史重建机制。高频失败反例：只能 append-forward 无法回溯、回溯时统计仍显示最新值、AI 卡回溯时用全量历史重算而非快照。评分锚点：scrubber 全盘回溯且 AI 卡取赛前快照=1；能回溯统计但 AI 卡用重算或部分区域不回溯=0.5；无时光回溯=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：完成 8 回合，记录第 4 回合结束时的统计与挑战进度（可通过单步或已知序列复现）。",
+          "**验证点 1（scrub 回溯统计）**：拖动 scrubber 到第 4 回合 → 断言统计卡（胜率/命中率/最长连胜等）、挑战进度、最近序列回到第 4 回合当时的值，而非第 8 回合。",
+          "**验证点 2（图表回溯）**：断言三类图表只显示到第 4 回合的数据点/高亮位置在第 4 回合。",
+          "**验证点 3（AI 卡赛前快照）**：断言 AI 状态卡显示第 4 回合的赛前预测分布与策略标签（即预测第 4 回合玩家出什么），与顺序推进到第 3 回合结束时看到的赛前预测一致。",
+          "**验证点 4（跳最新）**：点击\"跳到最新\" → 断言 dashboard 恢复到第 8 回合当前状态。"
+        ]
+      }
+    },
+    {
+      "task_id": "6",
+      "judge_mode": "pointwise",
+      "task": "多图表与表格联动——在任一图表 hover 或时间轴 scrub 时，三类图表与历史表格高亮同一回合，共享十字准线/竖线与 tooltip 展示该回合关键字段，移出后恢复。",
+      "criteria": [
+        {
+          "criterion_id": "6.1",
+          "text": "hover 任一图表出现指示线/点与 tooltip"
+        },
+        {
+          "criterion_id": "6.2",
+          "text": "同一时刻三图与表格高亮的是同一回合"
+        },
+        {
+          "criterion_id": "6.3",
+          "text": "tooltip 展示该回合 player/ai/result/predicted/confidence 等关键字段"
+        },
+        {
+          "criterion_id": "6.4",
+          "text": "移出后高亮恢复。高频失败反例：每张图各自为政不联动、tooltip 只在单图、scrub 与 hover 定位不一致。评分锚点：三图+表格联动同一回合且共享 tooltip=1；仅部分联动=0.5；无联动=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：完成至少 10 回合，展开训练视图。",
+          "**验证点 1（hover 联动）**：在置信度图上 hover 到第 6 回合位置 → 断言命中时间线、策略时间线与历史表格同时高亮第 6 回合，出现共享指示线与 tooltip。",
+          "**验证点 2（字段）**：断言 tooltip 展示第 6 回合关键字段。",
+          "**验证点 3（scrub 一致）**：拖动时间轴到第 6 回合 → 断言各图高亮位置与 hover 时一致。",
+          "**验证点 4（恢复）**：移出 → 断言高亮/tooltip 消失。"
+        ]
+      }
+    },
+    {
+      "task_id": "7",
+      "judge_mode": "pointwise",
+      "task": "历史表格筛选、排序与派生统计一致——历史表格支持按结果、策略标签筛选，按回合号/置信度/结果排序；筛选结果数随筛选实时更新；统计卡派生指标在有筛选时基于筛选子集重算并标注\"筛选后/全局\"；筛选、排序、计数、派生统计四者一致。",
+      "criteria": [
+        {
+          "criterion_id": "7.1",
+          "text": "表格字段完整（round/player/ai/predicted/result/strategy/confidence）"
+        },
+        {
+          "criterion_id": "7.2",
+          "text": "结果与策略筛选可用"
+        },
+        {
+          "criterion_id": "7.3",
+          "text": "排序正确"
+        },
+        {
+          "criterion_id": "7.4",
+          "text": "筛选结果数 = 当前筛选后行数；预测命中率另按筛选子集中的预测命中回合计算"
+        },
+        {
+          "criterion_id": "7.5",
+          "text": "有筛选时统计卡胜率/命中率等基于筛选子集重算且有\"筛选后/全局\"标注"
+        },
+        {
+          "criterion_id": "7.6",
+          "text": "空结果有空态。高频失败反例：筛选后统计卡仍显示全局旧值、筛选结果数与表格行数不符、排序破坏筛选。评分锚点：筛选/排序/计数/派生统计四者一致且标注清晰=1；筛选排序可用但派生统计仍全局=0.5；筛选与统计脱节=0。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：完成至少 12 回合，含不同 result 与 strategy。",
+          "**验证点 1（结果筛选+派生）**：选\"玩家胜\"筛选 → 断言表格只剩玩家胜回合，筛选结果数等于行数，且统计卡预测命中率/胜率切换为基于该子集的值并标注\"筛选后\"。",
+          "**验证点 2（策略筛选）**：改选某策略标签 → 断言表格与统计同步更新。",
+          "**验证点 3（排序）**：按置信度降序 → 断言 confidence 从高到低；按回合号升序 → 断言 round 递增，且排序不改变筛选集合。",
+          "**验证点 4（空态）**：设一组无结果条件 → 断言空态提示、筛选结果数为 0。"
+        ]
+      }
+    },
+    {
+      "task_id": "8",
+      "judge_mode": "pointwise",
+      "task": "欺骗 AI 挑战、导出导入与回放复现——挑战连续 5 回合避开赛前最高预测则完成、命中清零、进度有视觉反馈；导出 JSON 含足以复现回放与时光回溯的字段；导入 JSON 后回放不重新随机 AI 出拳，复现每回合 AI 选择、赛前快照、结果与统计。",
+      "criteria": [
+        {
+          "criterion_id": "8.1",
+          "text": "挑战进度可见且有反馈"
+        },
+        {
+          "criterion_id": "8.2",
+          "text": "用赛前 predicted 判定打破，连续 5 次完成、命中清零、reset 恢复"
+        },
+        {
+          "criterion_id": "8.3",
+          "text": "导出 JSON 含 mode/seed/rounds/filters 与每回合 player/ai/predicted/result/strategy/confidence/explanation 及赛前快照"
+        },
+        {
+          "criterion_id": "8.4",
+          "text": "导入可回放"
+        },
+        {
+          "criterion_id": "8.5",
+          "text": "回放/回溯不重新随机、复现原记录。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：reset，挑战进度为 0/5。",
+          "**验证点 1（挑战±）**：读取当前最高预测 P，点非 P → 断言进度 +1；再点 P → 断言清零。",
+          "**验证点 2（导出）**：完成 6 回合后导出 → 断言 JSON 字段完整、含赛前快照信息。",
+          "**验证点 3（导入回放）**：reset 后导入该 JSON 并回放 → 断言每回合 AI 出拳、赛前预测、结果、统计与导出前一致。"
+        ]
+      }
+    },
+    {
+      "task_id": "9",
+      "judge_mode": "pointwise",
+      "task": "大数据量流畅度、持久化恢复与 reset 全清——endless 连续 300+ 回合时表格与图表仍流畅（虚拟化/降采样/增量更新），scrub/滚动/筛选无明显掉帧；session 持久化，reload 有恢复/丢弃，坏值回退不白屏；reset 清空全部状态。",
+      "criteria": [
+        {
+          "criterion_id": "9.1",
+          "text": "endless 300+ 回合下滚动、筛选、scrub 流畅无卡死"
+        },
+        {
+          "criterion_id": "9.2",
+          "text": "若降采样，hover/scrub 定位到的仍是真实回合"
+        },
+        {
+          "criterion_id": "9.3",
+          "text": "reload 有恢复/丢弃且恢复后一致"
+        },
+        {
+          "criterion_id": "9.4",
+          "text": "坏 JSON/缺字段回退不白屏"
+        },
+        {
+          "criterion_id": "9.5",
+          "text": "reset 清空 history、快照、统计、图表、筛选、挑战、结算、replay 位置和持久化草稿。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：endless 模式（可用脚本或连续点击）累计到 300+ 回合。",
+          "**验证点 1（流畅）**：滚动历史表格、切换筛选、拖动 scrubber → 断言响应及时、无明显掉帧或卡死、控制台无报错。",
+          "**验证点 2（降采样保真）**：若图表降采样，hover 到某点 → 断言 tooltip 显示的是真实存在的回合数据。",
+          "**验证点 3（恢复/丢弃/坏值）**：刷新选恢复 → 断言状态一致；写入坏 JSON 后刷新 → 断言不白屏、回退初始。",
+          "**验证点 4（reset 全清）**：点击 reset → 断言全部状态与 replay 位置清空。"
+        ]
+      }
+    },
+    {
+      "task_id": "10",
+      "judge_mode": "pointwise",
+      "task": "响应式与 README——桌面端信息密度合理、美观一致；360px 下可出拳、看分布/挑战/统计/最近回合并访问 replay 与时光回溯（可简化控件不缺功能）；reduced-motion 降级但保留状态变化；README 说明齐全并注明 AI 为本地模拟。",
+      "criteria": [
+        {
+          "criterion_id": "10.1",
+          "text": "桌面布局清晰美观"
+        },
+        {
+          "criterion_id": "10.2",
+          "text": "360px 下核心功能与时光回溯可用、无关键错位"
+        },
+        {
+          "criterion_id": "10.3",
+          "text": "reduced-motion 减少动画但状态清晰"
+        },
+        {
+          "criterion_id": "10.4",
+          "text": "至少 12 个 Vitest + 2 个 UI 级测试覆盖 prompt 指定核心点（含时光回溯与筛选派生统计）"
+        },
+        {
+          "criterion_id": "10.5",
+          "text": "README 说明运行/构建/测试/模块/数据模型/快照与时光回溯/图表联动/筛选派生统计/seed/replay/reset/大数据量优化/已知限制，并注明不接大模型。"
+        }
+      ],
+      "validation": {
+        "description": "验证规程（validation protocol）（供自动化 judge / UI agent 按序执行）",
+        "steps": [
+          "**前置条件（precondition）**：viewport 设为 360px 宽。",
+          "**验证点 1（移动可用）**：出拳 2 回合 → 断言出拳、分布、挑战、统计、最近回合可见可操作，无横向溢出。",
+          "**验证点 2（移动端时光回溯）**：拖动 scrubber → 断言移动端也能回溯到历史回合。",
+          "**验证点 3（reduced motion）**：启用后重载 → 断言动画减少但状态清晰。",
+          "**静态验证**：运行 test/typecheck；读 README 核对说明与本地 AI 声明。"
+        ]
+      }
+    }
+  ]
+}
